@@ -1,20 +1,20 @@
 """CLI for generating answers from retrieval traces."""
 
-import json
-import logging
-import os
-from pathlib import Path
+import json # للتعامل مع ملفات JSON (قراءة/كتابة)
+import logging  # لتسجيل الأحداث (logs)
+import os # للوصول إلى متغيرات البيئة
+from pathlib import Path # للتعامل مع المسارات بشكل نظيف
 
-import click
-from dotenv import load_dotenv
+import click # مكتبة لإنشاء CLI بسهولة
+from dotenv import load_dotenv # لتحميل متغيرات البيئة من ملف .env
+# استيراد مكونات المشروع
+from corag.controller.base import GenerationConfig  # إعدادات التوليد (مثل temperature)
+from corag.controller.openai_controller import OpenAIController # Controller للتعامل مع OpenAI
+from corag.corpus.document import Chunk # يمثل جزء من document
+from corag.generation.synthesizer import Synthesizer # المسؤول عن توليد الإجابة
+from corag.retrieval.state import RetrievalState, RetrievalStep # تمثيل حالة الاسترجاع
 
-from corag.controller.base import GenerationConfig
-from corag.controller.openai_controller import OpenAIController
-from corag.corpus.document import Chunk
-from corag.generation.synthesizer import Synthesizer
-from corag.retrieval.state import RetrievalState, RetrievalStep
-
-load_dotenv()
+load_dotenv() # تحميل متغيرات البيئة (مثل API KEY)
 
 logging.basicConfig(
     level=logging.INFO,

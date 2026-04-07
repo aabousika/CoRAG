@@ -1,19 +1,19 @@
 """CLI for running evaluation."""
 
 import logging
-import os
-from pathlib import Path
+import os # للوصول إلى متغيرات البيئة
+from pathlib import Path # للتعامل مع المسارات
 
 import click
 from dotenv import load_dotenv
 
-from corag.controller.base import GenerationConfig
-from corag.controller.openai_controller import OpenAIController
-from corag.evaluation.evaluator import Evaluator
-from corag.generation.synthesizer import Synthesizer
-from corag.indexing.embedder import Embedder
-from corag.indexing.index import FAISSIndex
-from corag.retrieval.pipeline import RetrievalPipeline
+from corag.controller.base import GenerationConfig # إعدادات التوليد
+from corag.controller.openai_controller import OpenAIController # LLM controller
+from corag.evaluation.evaluator import Evaluator # مسؤول التقييم
+from corag.generation.synthesizer import Synthesizer # توليد الإجابة
+from corag.indexing.embedder import Embedder # تحويل النص إلى vector
+from corag.indexing.index import FAISSIndex # index للبحث
+from corag.retrieval.pipeline import RetrievalPipeline # pipeline الاسترجاع
 
 load_dotenv()
 
@@ -24,14 +24,14 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-@click.command()
+@click.command() # تعريف CLI
 @click.option(
     "--dataset",
     required=True,
-    type=click.Choice(["hotpotqa", "2wikimultihopqa"], case_sensitive=False),
+    type=click.Choice(["hotpotqa", "2wikimultihopqa"], case_sensitive=False), #case_sensitive=False يعني:لنظام لا يفرّق بين الأحرف الكبيرة والصغيرة
     help="Dataset name",
 )
-@click.option("--split", default="validation", help="Dataset split")
+@click.option("--split", default="validation", help="Dataset split")# نوع البيانات (train / validation / test)
 @click.option(
     "--index-dir", required=True, type=click.Path(exists=True), help="Index directory"
 )
@@ -86,7 +86,7 @@ def main(
 
     # Create pipeline and synthesizer
     config = GenerationConfig(temperature=temperature)
-    pipeline = RetrievalPipeline(
+    pipeline = RetrievalPipeline(# pipeline مسؤول عن الاسترجاع multi-step
         index=index,
         embedder=embedder,
         controller=controller,

@@ -4,11 +4,11 @@ import logging
 import os
 from pathlib import Path
 
-import click
-import uvicorn
+import click# لإنشاء CLI (Command Line Interface)
+import uvicorn # لتشغيل FastAPI server
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from fastapi import FastAPI, HTTPException # لإنشاء API
+from pydantic import BaseModel # لإنشاء نماذج البيانات للتحقق من صحة الطلبات
 
 from corag.controller.base import GenerationConfig
 from corag.controller.openai_controller import OpenAIController
@@ -26,7 +26,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Global state
-app_state: dict[str, object] = {}
+app_state: dict[str, object] = {}# الحالة العامة للتطبيق (تخزين pipeline وsynthesizer)
 
 
 class AskRequest(BaseModel):
@@ -54,7 +54,7 @@ app = FastAPI(
     version="0.1.0",
 )
 
-
+#للتحقق من أن السيرفر يعمل.
 @app.get("/healthz")
 async def health_check() -> dict:
     """Health check endpoint."""
@@ -144,10 +144,10 @@ def main(
     # Load components
     logger.info(f"Loading index from {index_dir_obj}")
     index = FAISSIndex.load(index_dir_obj)
-
+  #تحميل قاعدة البيانات ونموذج الـ embeddings.
     logger.info(f"Loading embedder: {embedding_model}")
     embedder = Embedder(model_name=embedding_model, device=device)
-
+#إعداد مزود الـ LLM (OpenAI) والتحقق من وجود الـ API Key.
     if provider == "openai":
         api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
@@ -156,7 +156,7 @@ def main(
     else:
         raise ValueError(f"Unsupported provider: {provider}")
 
-    # Create pipeline and synthesizer
+    # Create pipeline and synthesizer 
     config = GenerationConfig(temperature=0.2)
     pipeline = RetrievalPipeline(
         index=index,
@@ -168,13 +168,13 @@ def main(
     )
     synthesizer = Synthesizer(controller=controller, config=config)
 
-    # Store in app state
+    # Store in app state لتسهيل الوصول إليهم من أي endpoint
     app_state["pipeline"] = pipeline
     app_state["synthesizer"] = synthesizer
     app_state["model_name"] = model
 
     logger.info(f"Starting server on {host}:{port}")
-    uvicorn.run(app, host=host, port=port)
+    uvicorn.run(app, host=host, port=port)# تشغيل السيرفر باستخدام uvicorn على العنوان والمنفذ المحددين.
 
 
 if __name__ == "__main__":

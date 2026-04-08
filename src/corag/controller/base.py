@@ -1,8 +1,10 @@
 """Base controller interface for LLM providers."""
 
 from abc import ABC, abstractmethod
+# ABC = Abstract Base Class → لإنشاء كلاس مجرد (لا يمكن استخدامه مباشرة)
+# abstractmethod = لإجبار الكلاسات التي ترث منه على تنفيذ دوال معينة
 from dataclasses import dataclass
-
+# dataclass = لتسهيل إنشاء كلاس مخصص لتخزين البيانات (بدون كتابة constructor يدوي)
 
 @dataclass
 class GenerationConfig:
@@ -10,9 +12,9 @@ class GenerationConfig:
 
     temperature: float = 0.2
     max_tokens: int = 2048
-    top_p: float = 1.0
-    stop: list[str] | None = None
-    seed: int | None = None
+    top_p: float = 1.0 #أسلوب sampling (nucleus sampling)
+    stop: list[str] | None = None #قائمة كلمات إذا ظهرت يتوقف التوليد عندها
+    seed: int | None = None #seed لتثبيت النتائج (reproducibility)
 
 
 class Controller(ABC):

@@ -1,9 +1,13 @@
 """Document chunking with token-based splitting and overlap."""
 
-import hashlib
+import hashlib # مكتبة لإنشاء hash (تُستخدم لتوليد معرف فريد لكل Chunk)
 
 from corag.corpus.document import Chunk, Document
+# Document: يمثل المستند الكامل
+# Chunk: يمثل جزء من المستند
 from corag.utils.text import clean_text, count_tokens_approximate
+# clean_text: تنظيف النص
+# count_tokens_approximate: حساب عدد التوكنز بشكل تقريبي
 
 
 class Chunker:
@@ -22,7 +26,7 @@ class Chunker:
             chunk_overlap: Number of tokens to overlap between chunks
             min_chunk_size: Minimum chunk size in tokens
         """
-        self.chunk_size = chunk_size
+        self.chunk_size = chunk_size # تخزين حجم الـ chunk
         self.chunk_overlap = chunk_overlap
         self.min_chunk_size = min_chunk_size
 
@@ -40,20 +44,23 @@ class Chunker:
 
         # Split by words to handle tokens
         words = text.split()
-        current_pos = 0
-        start_char = 0
-        chunk_idx = 0
+        current_pos = 0 # مؤشر البداية في قائمة الكلمات
+        start_char = 0 # موقع البداية بالحروف داخل النص الأصلي
+        chunk_idx = 0 # عداد للـ chunks
 
         while current_pos < len(words):
             # Take chunk_size words (approximate tokens)
             end_pos = min(current_pos + self.chunk_size, len(words))
-            chunk_words = words[current_pos:end_pos]
-            chunk_text = " ".join(chunk_words)
+            chunk_words = words[current_pos:end_pos]# أخذ الكلمات الخاصة بهذا chunk
+            chunk_text = " ".join(chunk_words) # تحويلها إلى نص
 
             # Calculate character positions
             end_char = start_char + len(chunk_text)
 
-            # Create chunk
+            # Create chunk 
+            # شرط إنشاء chunk:
+            # - إذا كان الحجم مناسب
+            # - أو إذا كان هذا آخر جزء من النص
             token_count = count_tokens_approximate(chunk_text)
 
             if token_count >= self.min_chunk_size or end_pos == len(words):
@@ -70,9 +77,9 @@ class Chunker:
                     metadata={
                         "doc_sections": document.sections,
                         "doc_timestamp": (
-                            document.timestamp.isoformat()
+                            document.timestamp.isoformat() # تحويل الوقت إلى نص
                             if document.timestamp
-                            else None
+                            else None # إذا لا يوجد وقت
                         ),
                     },
                 )
@@ -81,7 +88,7 @@ class Chunker:
 
             # Move forward with overlap
             if end_pos < len(words):
-                current_pos += self.chunk_size - self.chunk_overlap
+                current_pos += self.chunk_size - self.chunk_overlap # تقدم مع ترك تداخل
                 # Update start_char position
                 overlap_text = " ".join(words[current_pos:end_pos])
                 start_char = end_char - len(overlap_text)
@@ -92,8 +99,8 @@ class Chunker:
 
     def _generate_chunk_id(self, doc_id: str, chunk_idx: int) -> str:
         """Generate unique chunk ID."""
-        content = f"{doc_id}_{chunk_idx}"
-        return hashlib.md5(content.encode()).hexdigest()[:16]
+        content = f"{doc_id}_{chunk_idx}" # دمج معرف المستند مع رقم chunk
+        return hashlib.md5(content.encode()).hexdigest()[:16]# إنشاء hash وأخذ أول 16 حرف
 
     def chunk_documents(self, documents: list[Document]) -> list[Chunk]:
         """Chunk multiple documents.
@@ -106,6 +113,6 @@ class Chunker:
         """
         all_chunks = []
         for doc in documents:
-            chunks = self.chunk_document(doc)
-            all_chunks.extend(chunks)
+            chunks = self.chunk_document(doc)# تقسيمه
+            all_chunks.extend(chunks) # إضافة نتائجه
         return all_chunks

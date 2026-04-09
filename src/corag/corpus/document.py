@@ -1,8 +1,9 @@
 """Document schema and processing."""
 
-from dataclasses import dataclass, field
-from datetime import datetime
-from typing import Any
+from dataclasses import dataclass, field # dataclass لتسهيل إنشاء كائنات بيانات، و field لإعداد القيم الافتراضية
+from datetime import datetime# للتعامل مع الوقت والتاريخ
+from typing import Any # نوع عام يمكن أن يمثل أي نوع بيانات
+
 
 
 @dataclass
@@ -13,9 +14,9 @@ class Document:
     title: str
     text: str
     url: str | None = None
-    sections: list[str] = field(default_factory=list)
-    timestamp: datetime | None = None
-    metadata: dict[str, Any] = field(default_factory=dict)
+    sections: list[str] = field(default_factory=list)# قائمة أقسام المستند (افتراضيًا قائمة فارغة)
+    timestamp: datetime | None = None # وقت إنشاء/نشر المستند (اختياري)
+    metadata: dict[str, Any] = field(default_factory=dict)# بيانات إضافية (افتراضيًا dict فارغ)
 
     def to_dict(self) -> dict[str, Any]:
         """Convert document to dictionary."""
@@ -25,7 +26,7 @@ class Document:
             "text": self.text,
             "url": self.url,
             "sections": self.sections,
-            "timestamp": self.timestamp.isoformat() if self.timestamp else None,
+            "timestamp": self.timestamp.isoformat() if self.timestamp else None,# تحويل الوقت إلى نص ISO إذا موجود
             "metadata": self.metadata,
         }
 
@@ -34,7 +35,7 @@ class Document:
         """Create document from dictionary."""
         timestamp = None
         if data.get("timestamp"):
-            timestamp = datetime.fromisoformat(data["timestamp"])
+            timestamp = datetime.fromisoformat(data["timestamp"])# تحويل النص إلى datetime
 
         return cls(
             id=data["id"],
@@ -43,7 +44,7 @@ class Document:
             url=data.get("url"),
             sections=data.get("sections", []),
             timestamp=timestamp,
-            metadata=data.get("metadata", {}),
+            metadata=data.get("metadata", {}),# جلب metadata أو dict فارغ
         )
 
 
@@ -59,8 +60,8 @@ class Chunk:
     tokens: int
     doc_title: str
     doc_url: str | None = None
-    section: str | None = None
-    metadata: dict[str, Any] = field(default_factory=dict)
+    section: str | None = None# القسم الذي ينتمي له (اختياري)
+    metadata: dict[str, Any] = field(default_factory=dict)# بيانات إضافية
 
     def to_dict(self) -> dict[str, Any]:
         """Convert chunk to dictionary."""
@@ -90,5 +91,5 @@ class Chunk:
             doc_title=data["doc_title"],
             doc_url=data.get("doc_url"),
             section=data.get("section"),
-            metadata=data.get("metadata", {}),
+            metadata=data.get("metadata", {}),# جلب metadata أو dict فارغ
         )

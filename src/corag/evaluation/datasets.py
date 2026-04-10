@@ -1,10 +1,10 @@
 """Dataset loaders for evaluation."""
 
 import logging
-from collections.abc import Iterator
-from dataclasses import dataclass
+from collections.abc import Iterator# لتحديد أن الدوال سترجع iterator (توليد تدريجي للبيانات)
+from dataclasses import dataclass# لتسهيل تعريف كلاس يحتوي بيانات فقط (بدون boilerplate)
 
-from datasets import load_dataset
+from datasets import load_dataset# استيراد مكتبة HuggingFace لتحميل datasets الجاهزة مثل HotpotQA
 
 logger = logging.getLogger(__name__)
 
@@ -15,7 +15,7 @@ class EvalExample:
 
     id: str
     question: str
-    answer: str
+    answer: str# الإجابة الصحيحة (ground truth)
     supporting_facts: list[str] | None = None  # Document titles or IDs
     type: str = ""  # Question type (e.g., bridge, comparison)
     level: str = ""  # Difficulty level
@@ -39,19 +39,19 @@ class DatasetLoader:
         logger.info(f"Loading HotpotQA {split} split...")
 
         try:
-            dataset = load_dataset("hotpot_qa", "distractor", split=split)
+            dataset = load_dataset("hotpot_qa", "distractor", split=split) #تحميل dataset من HuggingFace "distractor" يعني وجود مقاطع غير مفيدة (تشبه الواقع)
 
-            count = 0
+            count = 0# عداد لعدد الأمثلة
             for item in dataset:
                 if max_examples and count >= max_examples:
-                    break
+                    break #إيقاف التحميل عند الوصول للحد المطلوب
 
                 # Extract supporting fact document titles
                 supporting_facts = []
                 if "supporting_facts" in item and item["supporting_facts"]:
                     supporting_facts = [
                         fact[0] for fact in item["supporting_facts"]["title"]
-                    ]
+                    ]#يأخذ فقط أسماء الوثائق (titles)
 
                 example = EvalExample(
                     id=item["id"],
@@ -62,7 +62,7 @@ class DatasetLoader:
                     level=item.get("level", ""),
                 )
 
-                yield example
+                yield example #يتم إرجاع المثال واحد واحد (lazy loading)
                 count += 1
 
             logger.info(f"Loaded {count} examples from HotpotQA")
@@ -87,7 +87,7 @@ class DatasetLoader:
 
         # Map split name
         split_map = {"validation": "dev", "train": "train", "test": "test"}
-        split = split_map.get(split, split)
+        split = split_map.get(split, split)#تحويل اسم الـ split لأن dataset يستخدم naming مختلف
 
         try:
             dataset = load_dataset("THUDM/2WikiMultihopQA", split=split)

@@ -1,7 +1,7 @@
 """Answer synthesis with citation support."""
 
 import logging
-import re
+import re#للتعامل مع الـ regex (سنستخدمه لاستخراج [1], [2] من النص)
 
 from corag.controller.base import Controller, GenerationConfig
 from corag.corpus.document import Chunk
@@ -50,7 +50,7 @@ class Synthesizer:
         self.controller = controller
         self.config = config or GenerationConfig(temperature=0.3, max_tokens=2048)
         self.max_context_chunks = max_context_chunks
-        self.max_chunk_length = max_chunk_length
+        self.max_chunk_length = max_chunk_length#أقصى طول لكل chunk (لتجنب overflow)
 
     def synthesize(self, state: RetrievalState) -> tuple[str, list[dict[str, str]]]:
         """Synthesize answer from retrieval state.
@@ -111,7 +111,7 @@ class Synthesizer:
         sources = []
         citations = []
 
-        for idx, chunk in enumerate(chunks, 1):
+        for idx, chunk in enumerate(chunks, 1):#ترقيم المصادر: [1], [2], ...
             # Truncate chunk text if needed
             text = chunk.text
             if len(text) > self.max_chunk_length:
@@ -132,7 +132,7 @@ class Synthesizer:
             }
             citations.append(citation)
 
-        sources_text = "\n\n".join(sources)
+        sources_text = "\n\n".join(sources)#دمج كل المصادر في نص واحد
         return sources_text, citations
 
     def verify_citations(self, answer: str, citations: list[dict[str, str]]) -> bool:
@@ -155,7 +155,7 @@ class Synthesizer:
         invalid_ids = cited_ids - valid_ids
         if invalid_ids:
             logger.warning(f"Invalid citation IDs found: {invalid_ids}")
-            return False
+            return False #أي citation غير موجود → خطأ
 
         return True
 
@@ -171,12 +171,12 @@ class Synthesizer:
         Returns:
             Formatted answer with references
         """
-        output = answer + "\n\n## References\n\n"
+        output = answer + "\n\n## References\n\n"#إضافة قسم المراجع
 
         for citation in citations:
-            line = f"[{citation['id']}] {citation['title']}"
+            line = f"[{citation['id']}] {citation['title']}" #عرض كل مرجع
             if citation.get("url"):
-                line += f" - {citation['url']}"
+                line += f" - {citation['url']}" #إجابة + قائمة مراجع مثل paper أكاديمي
             output += line + "\n"
 
         return output

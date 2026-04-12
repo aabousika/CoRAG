@@ -3,8 +3,8 @@
 import logging
 
 import numpy as np
-import torch
-from sentence_transformers import SentenceTransformer
+import torch # استيراد PyTorch لمعرفة الجهاز المتاح (CPU / GPU / MPS)
+from sentence_transformers import SentenceTransformer # استيراد الكلاس الأساسي الذي يحول النص إلى embeddings
 
 logger = logging.getLogger(__name__)
 
@@ -64,6 +64,8 @@ class Embedder:
             show_progress_bar=show_progress,
             convert_to_numpy=True,
             normalize_embeddings=normalize,
+            #يجعل طول كل vector = 1
+#هذا يساعد في استخدام cosine similarity
         )
         return embeddings
 

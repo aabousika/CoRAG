@@ -1,16 +1,18 @@
 """CoRAG: Adaptive Multi-Step Retrieval for Complex Queries."""
 
 __version__ = "0.1.0"
-__author__ = "AyhamJo77"
-__email__ = "mhd.ayham.joumran@studium.uni-hamburg.de"
+__author__ = "Angel(aabousika)"
+__email__ = "aabousika@gmail.com"
 
 from corag.controller.base import Controller
-from corag.corpus.chunker import Chunker
-from corag.corpus.document import Document
-from corag.generation.synthesizer import Synthesizer
-from corag.indexing.embedder import Embedder
-from corag.indexing.index import FAISSIndex
-from corag.retrieval.pipeline import RetrievalPipeline
+# المتحكم الرئيسي بالنظام (Brain)
+# يدير تدفق العمل بين كل المكونات
+from corag.corpus.chunker import Chunker# مسؤول عن تقسيم النصوص إلى أجزاء (Chunks)
+from corag.corpus.document import Document# يمثل المستند (Document) كوحدة بيانات
+from corag.generation.synthesizer import Synthesizer# مسؤول عن توليد الإجابة النهائية باستخدام LLM
+from corag.indexing.embedder import Embedder# يحول النصوص إلى Embeddings (متجهات رقمية)
+from corag.indexing.index import FAISSIndex# قاعدة بيانات للبحث (Vector DB) باستخدام FAISS
+from corag.retrieval.pipeline import RetrievalPipeline# pipeline كامل لعملية الاسترجاع (Retrieval)
 
 __all__ = [
     "Document",
@@ -21,3 +23,10 @@ __all__ = [
     "RetrievalPipeline",
     "Synthesizer",
 ]
+# تحديد المكونات الأساسية التي سيتم تصديرها للمستخدم
+# عند استخدام:
+# from corag import *
+#
+# الهدف:
+# - إخفاء التفاصيل الداخلية
+# - تقديم واجهة نظيفة للمشروع

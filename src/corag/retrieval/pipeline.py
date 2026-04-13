@@ -12,7 +12,7 @@ from corag.controller.prompts import (
 from corag.indexing.embedder import Embedder
 from corag.indexing.index import FAISSIndex
 from corag.retrieval.state import RetrievalState, RetrievalStep
-from corag.utils.text import truncate_text
+from corag.utils.text import truncate_text# لتقصير النصوص الطويلة
 
 logger = logging.getLogger(__name__)
 
@@ -78,7 +78,7 @@ class RetrievalPipeline:
                 continue
 
             # Retrieve
-            chunks, scores = self._retrieve(query)
+            chunks, scores = self._retrieve(query) # جلب البيانات من FAISS
             step = RetrievalStep(
                 step_num=step_num,
                 query=query,
@@ -150,18 +150,20 @@ class RetrievalPipeline:
         prompt = f"Question: {question}\n\nDecompose this into sub-queries."
 
         try:
-            response = self.controller.generate(
-                prompt=prompt,
-                system=DECOMPOSITION_PROMPT,
-                config=self.config,
+            response = self.controller.generate( # إرسال الطلب إلى الـ LLM:
+                prompt=prompt,# - prompt: السؤال
+                system=DECOMPOSITION_PROMPT,#- system: تعليمات خاصة (كيف يقسم)
+                config=self.config,  # - config: إعدادات النموذج
             )
 
             # Parse JSON response
             data = json.loads(response)
             sub_queries = data.get("sub_queries", [question])
+            # استخراج sub_queries
+        # إذا لم يوجد → نرجع السؤال الأصلي
 
             if not sub_queries:
-                return [question]
+                return [question]# إذا القائمة فاضية → fallback
 
             # Ensure we have a list of strings
             if isinstance(sub_queries, list):
@@ -196,15 +198,18 @@ class RetrievalPipeline:
             True if duplicate
         """
         if not executed_queries:
-            return False
+            return False  # إذا لا يوجد queries سابقة → بالتأكيد ليس مكرر
 
-        query_emb = self.embedder.embed_query(query)
+        query_emb = self.embedder.embed_query(query)# تحويل query الحالي إلى vector
 
-        for prev_query in executed_queries:
-            prev_emb = self.embedder.embed_query(prev_query)
+        for prev_query in executed_queries:# المرور على كل query سابق
+            prev_emb = self.embedder.embed_query(prev_query)# تحويل query السابق إلى vector
 
             # Cosine similarity (embeddings are normalized)
             similarity = float(query_emb.dot(prev_emb))
+            # حساب Cosine Similarity
+        # (بافتراض أن vectors normalized)
+        # الناتج بين -1 و 1
 
             if similarity > self.similarity_threshold:
                 logger.debug(
@@ -229,6 +234,9 @@ class RetrievalPipeline:
         info_summary = "\n\n".join(
             [f"- {truncate_text(c.text, 200)}" for c in unique_chunks[:10]]
         )
+        # إنشاء ملخص:
+    # - أول 10 chunks
+    # - كل واحد مقطوع لـ 200 حرف
 
         try:
             response = self.controller.generate(
@@ -239,13 +247,18 @@ class RetrievalPipeline:
                 ),
                 config=self.config,
             )
+             # إرسال:
+        # - السؤال الأصلي
+        # - queries السابقة
+        # - المعلومات الحالية
+        # إلى LLM
 
-            data = json.loads(response)
-            state.answered_aspects = data.get("answered_aspects", [])
+            data = json.loads(response)# تحويل الرد إلى JSON
+            state.answered_aspects = data.get("answered_aspects", []) # ما الذي تم الإجابة عنه
             state.gaps = data.get("gaps", [])
-            state.contradictions = data.get("contradictions", [])
+            state.contradictions = data.get("contradictions", []) # هل هناك تعارض في المعلومات
 
-            follow_ups = data.get("follow_up_queries", [])
+            follow_ups = data.get("follow_up_queries", [])# أسئلة جديدة لسد الفجوة
             # Ensure we have a list of strings
             if isinstance(follow_ups, list):
                 return [str(q) for q in follow_ups]
@@ -253,7 +266,7 @@ class RetrievalPipeline:
 
         except (json.JSONDecodeError, KeyError) as e:
             logger.warning(f"Failed to parse gap analysis: {e}")
-            return []
+            return []# في حال فشل parsing
 
     def _self_critique(self, state: RetrievalState) -> bool:
         """Check if enough information has been gathered.
@@ -264,16 +277,23 @@ class RetrievalPipeline:
         Returns:
             True if sufficient
         """
-        unique_chunks = state.get_unique_chunks()
+        unique_chunks = state.get_unique_chunks()# جلب المعلومات
         info_summary = "\n\n".join(
             [f"- {truncate_text(c.text, 150)}" for c in unique_chunks[:15]]
         )
+        # تلخيص:
+    # - أول 15 chunk
+    # - كل واحد 150 حرف
 
         prompt = SELF_CRITIQUE_PROMPT.format(
             question=state.original_question,
             num_steps=len(state.steps),
             information_summary=info_summary,
         )
+        # بناء prompt يحتوي:
+    # - السؤال
+    # - عدد الخطوات
+    # - المعلومات الحالية
 
         try:
             response = self.controller.generate(
@@ -283,7 +303,7 @@ class RetrievalPipeline:
 
             data = json.loads(response)
             is_sufficient = data.get("is_sufficient", False)
-            confidence = data.get("confidence", 0.0)
+            confidence = data.get("confidence", 0.0)# مستوى الثقة
 
             logger.info(
                 f"Self-critique: sufficient={is_sufficient}, confidence={confidence:.2f}"
@@ -293,4 +313,4 @@ class RetrievalPipeline:
 
         except (json.JSONDecodeError, KeyError) as e:
             logger.warning(f"Failed to parse self-critique: {e}")
-            return False
+            return False # في حال خطأ → نعتبرها غير كافية

@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
-    {name = "AyhamJo7", email = "ayham@example.com"}
+    {name = "aabousika", email = "aabousika@gmail.com"}
 ]
 keywords = ["retrieval", "rag", "multi-hop", "question-answering", "nlp"]
 classifiers = [

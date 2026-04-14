@@ -62,9 +62,9 @@ gpu = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/AyhamJo7/CoRAG"
-Repository = "https://github.com/AyhamJo7/CoRAG"
-Issues = "https://github.com/AyhamJo7/CoRAG/issues"
+Homepage = "https://github.com/aabousika/CoRAG"
+Repository = "https://github.com/aabousika/CoRAG"
+Issues = "https://github.com/aabousika/CoRAG/issues"
 
 [project.scripts]
 corag-ingest = "corag.cli.ingest:main"

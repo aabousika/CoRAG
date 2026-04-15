@@ -12,7 +12,7 @@ from corag.evaluation.metrics import (
 
 
 def test_normalize_answer():
-    """Test answer normalization."""
+    """Test answer normalization."""#اختبار تنظيف النص
     assert normalize_answer("The Quick Brown Fox") == "quick brown fox"
     assert normalize_answer("  Extra   spaces  ") == "extra spaces"
     assert normalize_answer("Hello, World!") == "hello world"
@@ -29,7 +29,7 @@ def test_exact_match():
 def test_f1_score():
     """Test F1 score metric."""
     assert f1_score("Paris", "Paris") == 1.0
-    assert f1_score("Paris, France", "Paris") > 0.0
+    assert f1_score("Paris, France", "Paris") > 0.0#يوجد overlap → قيمة > 0
     assert f1_score("Paris", "London") == 0.0
 
 
@@ -38,7 +38,7 @@ def test_max_f1_over_ground_truths():
     prediction = "Paris"
     ground_truths = ["London", "Paris", "Berlin"]
     score = max_f1_over_ground_truths(prediction, ground_truths)
-    assert score == 1.0
+    assert score == 1.0#لأن "Paris" موجودة → perfect match
 
 
 def test_max_em_over_ground_truths():

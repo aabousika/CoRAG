@@ -1,19 +1,19 @@
 """CLI for running evaluation."""
 
 import logging
-import os # للوصول إلى متغيرات البيئة
-from pathlib import Path # للتعامل مع المسارات
+import os  # للوصول إلى متغيرات البيئة
+from pathlib import Path  # للتعامل مع المسارات
 
 import click
 from dotenv import load_dotenv
 
-from corag.controller.base import GenerationConfig # إعدادات التوليد
-from corag.controller.openai_controller import OpenAIController # LLM controller
-from corag.evaluation.evaluator import Evaluator # مسؤول التقييم
-from corag.generation.synthesizer import Synthesizer # توليد الإجابة
-from corag.indexing.embedder import Embedder # تحويل النص إلى vector
-from corag.indexing.index import FAISSIndex # index للبحث
-from corag.retrieval.pipeline import RetrievalPipeline # pipeline الاسترجاع
+from corag.controller.base import GenerationConfig  # إعدادات التوليد
+from corag.controller.openai_controller import OpenAIController  # LLM controller
+from corag.evaluation.evaluator import Evaluator  # مسؤول التقييم
+from corag.generation.synthesizer import Synthesizer  # توليد الإجابة
+from corag.indexing.embedder import Embedder  # تحويل النص إلى vector
+from corag.indexing.index import FAISSIndex  # index للبحث
+from corag.retrieval.pipeline import RetrievalPipeline  # pipeline الاسترجاع
 
 load_dotenv()
 

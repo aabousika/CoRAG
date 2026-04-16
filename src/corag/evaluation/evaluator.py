@@ -2,12 +2,12 @@
 
 import json
 import logging
-import time# لحساب زمن التنفيذ (latency)
-from dataclasses import dataclass, field# لإنشاء كائنات بيانات بسهولة
+import time  # لحساب زمن التنفيذ (latency)
+from dataclasses import dataclass, field  # لإنشاء كائنات بيانات بسهولة
 from pathlib import Path
-from typing import Any# للسماح بأنواع بيانات عامة
+from typing import Any  # للسماح بأنواع بيانات عامة
 
-from tqdm import tqdm # لإظهار progress bar أثناء التقييم tqdm = أداة لعرض تقدم التنفيذ
+from tqdm import tqdm  # لإظهار progress bar أثناء التقييم tqdm = أداة لعرض تقدم التنفيذ
 
 from corag.evaluation.datasets import DatasetLoader, EvalExample
 from corag.evaluation.metrics import (
@@ -15,8 +15,10 @@ from corag.evaluation.metrics import (
     max_f1_over_ground_truths,
 )
 from corag.generation.synthesizer import Synthesizer
-from corag.retrieval.pipeline import RetrievalPipeline # pipeline الاسترجاع (search + reasoning)
-from corag.retrieval.state import RetrievalState# يمثل حالة الاسترجاع (steps + chunks)
+from corag.retrieval.pipeline import (
+    RetrievalPipeline,  # pipeline الاسترجاع (search + reasoning)
+)
+from corag.retrieval.state import RetrievalState  # يمثل حالة الاسترجاع (steps + chunks)
 
 logger = logging.getLogger(__name__)
 

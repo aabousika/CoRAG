@@ -5,10 +5,10 @@ from pathlib import Path
 
 import click
 
-from corag.corpus.chunker import Chunker# تقسيم النصوص إلى أجزاء (chunks)
-from corag.corpus.ingest import CorpusIngestor# تحميل البيانات (documents)
-from corag.indexing.embedder import Embedder# تحويل النص إلى vector (embedding
-from corag.indexing.index import FAISSIndex# بناء index باستخدام FAISS
+from corag.corpus.chunker import Chunker  # تقسيم النصوص إلى أجزاء (chunks)
+from corag.corpus.ingest import CorpusIngestor  # تحميل البيانات (documents)
+from corag.indexing.embedder import Embedder  # تحويل النص إلى vector (embedding
+from corag.indexing.index import FAISSIndex  # بناء index باستخدام FAISS
 
 logging.basicConfig(
     level=logging.INFO,

@@ -1,11 +1,13 @@
 """Document chunking with token-based splitting and overlap."""
 
-import hashlib # مكتبة لإنشاء hash (تُستخدم لتوليد معرف فريد لكل Chunk)
+import hashlib  # مكتبة لإنشاء hash (تُستخدم لتوليد معرف فريد لكل Chunk)
 
 from corag.corpus.document import Chunk, Document
+
 # Document: يمثل المستند الكامل
 # Chunk: يمثل جزء من المستند
 from corag.utils.text import clean_text, count_tokens_approximate
+
 # clean_text: تنظيف النص
 # count_tokens_approximate: حساب عدد التوكنز بشكل تقريبي
 
@@ -57,7 +59,7 @@ class Chunker:
             # Calculate character positions
             end_char = start_char + len(chunk_text)
 
-            # Create chunk 
+            # Create chunk
             # شرط إنشاء chunk:
             # - إذا كان الحجم مناسب
             # - أو إذا كان هذا آخر جزء من النص

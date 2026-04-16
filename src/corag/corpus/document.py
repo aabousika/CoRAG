@@ -1,9 +1,11 @@
 """Document schema and processing."""
 
-from dataclasses import dataclass, field # dataclass لتسهيل إنشاء كائنات بيانات، و field لإعداد القيم الافتراضية
-from datetime import datetime# للتعامل مع الوقت والتاريخ
-from typing import Any # نوع عام يمكن أن يمثل أي نوع بيانات
-
+from dataclasses import (  # dataclass لتسهيل إنشاء كائنات بيانات، و field لإعداد القيم الافتراضية
+    dataclass,
+    field,
+)
+from datetime import datetime  # للتعامل مع الوقت والتاريخ
+from typing import Any  # نوع عام يمكن أن يمثل أي نوع بيانات
 
 
 @dataclass

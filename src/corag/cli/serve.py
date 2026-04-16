@@ -4,11 +4,11 @@ import logging
 import os
 from pathlib import Path
 
-import click# لإنشاء CLI (Command Line Interface)
-import uvicorn # لتشغيل FastAPI server
+import click  # لإنشاء CLI (Command Line Interface)
+import uvicorn  # لتشغيل FastAPI server
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException # لإنشاء API
-from pydantic import BaseModel # لإنشاء نماذج البيانات للتحقق من صحة الطلبات
+from fastapi import FastAPI, HTTPException  # لإنشاء API
+from pydantic import BaseModel  # لإنشاء نماذج البيانات للتحقق من صحة الطلبات
 
 from corag.controller.base import GenerationConfig
 from corag.controller.openai_controller import OpenAIController
@@ -156,7 +156,7 @@ def main(
     else:
         raise ValueError(f"Unsupported provider: {provider}")
 
-    # Create pipeline and synthesizer 
+    # Create pipeline and synthesizer
     config = GenerationConfig(temperature=0.2)
     pipeline = RetrievalPipeline(
         index=index,

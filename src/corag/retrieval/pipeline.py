@@ -12,7 +12,7 @@ from corag.controller.prompts import (
 from corag.indexing.embedder import Embedder
 from corag.indexing.index import FAISSIndex
 from corag.retrieval.state import RetrievalState, RetrievalStep
-from corag.utils.text import truncate_text# لتقصير النصوص الطويلة
+from corag.utils.text import truncate_text  # لتقصير النصوص الطويلة
 
 logger = logging.getLogger(__name__)
 

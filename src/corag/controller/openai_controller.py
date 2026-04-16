@@ -1,14 +1,17 @@
 """OpenAI-compatible LLM controller."""
 
 import logging
-import time #time → لاستخدام sleep في retry
-from typing import Any, cast #cast → لتحويل النوع (Type Casting)
+import time  #time → لاستخدام sleep في retry
+from typing import Any, cast  #cast → لتحويل النوع (Type Casting)
 
 import tiktoken
-from openai import OpenAI #استيراد client الرسمي للتعامل مع OpenAI API
-from openai.types.chat import ChatCompletionMessageParam #نوع البيانات المطلوب للـ messages في API
+from openai import OpenAI  #استيراد client الرسمي للتعامل مع OpenAI API
+from openai.types.chat import (
+    ChatCompletionMessageParam,  #نوع البيانات المطلوب للـ messages في API
+)
 
 from corag.controller.base import Controller, GenerationConfig
+
 #Controller (الواجهة الأساسية)
 #- GenerationConfig (إعدادات التوليد)
 

@@ -1,9 +1,11 @@
 """Base controller interface for LLM providers."""
 
 from abc import ABC, abstractmethod
+
 # ABC = Abstract Base Class → لإنشاء كلاس مجرد (لا يمكن استخدامه مباشرة)
 # abstractmethod = لإجبار الكلاسات التي ترث منه على تنفيذ دوال معينة
 from dataclasses import dataclass
+
 # dataclass = لتسهيل إنشاء كلاس مخصص لتخزين البيانات (بدون كتابة constructor يدوي)
 
 @dataclass

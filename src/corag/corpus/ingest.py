@@ -2,7 +2,7 @@
 
 import json
 import logging
-from collections.abc import Iterator# نوع يُستخدم لإرجاع القيم تدريجيًا (yield)
+from collections.abc import Iterator  # نوع يُستخدم لإرجاع القيم تدريجيًا (yield)
 from datetime import datetime
 from pathlib import Path
 

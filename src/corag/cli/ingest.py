@@ -5,7 +5,7 @@ from pathlib import Path
 
 import click
 
-from corag.corpus.ingest import CorpusIngestor # كلاس مسؤول عن تحميل البيانات ومعالجتها
+from corag.corpus.ingest import CorpusIngestor  # كلاس مسؤول عن تحميل البيانات ومعالجتها
 
 logging.basicConfig(
     level=logging.INFO,

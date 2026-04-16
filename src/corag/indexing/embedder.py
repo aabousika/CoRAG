@@ -3,8 +3,10 @@
 import logging
 
 import numpy as np
-import torch # استيراد PyTorch لمعرفة الجهاز المتاح (CPU / GPU / MPS)
-from sentence_transformers import SentenceTransformer # استيراد الكلاس الأساسي الذي يحول النص إلى embeddings
+import torch  # استيراد PyTorch لمعرفة الجهاز المتاح (CPU / GPU / MPS)
+from sentence_transformers import (
+    SentenceTransformer,  # استيراد الكلاس الأساسي الذي يحول النص إلى embeddings
+)
 
 logger = logging.getLogger(__name__)
 

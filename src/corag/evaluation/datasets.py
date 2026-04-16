@@ -1,10 +1,16 @@
 """Dataset loaders for evaluation."""
 
 import logging
-from collections.abc import Iterator# لتحديد أن الدوال سترجع iterator (توليد تدريجي للبيانات)
-from dataclasses import dataclass# لتسهيل تعريف كلاس يحتوي بيانات فقط (بدون boilerplate)
+from collections.abc import (
+    Iterator,  # لتحديد أن الدوال سترجع iterator (توليد تدريجي للبيانات)
+)
+from dataclasses import (
+    dataclass,  # لتسهيل تعريف كلاس يحتوي بيانات فقط (بدون boilerplate)
+)
 
-from datasets import load_dataset# استيراد مكتبة HuggingFace لتحميل datasets الجاهزة مثل HotpotQA
+from datasets import (
+    load_dataset,  # استيراد مكتبة HuggingFace لتحميل datasets الجاهزة مثل HotpotQA
+)
 
 logger = logging.getLogger(__name__)
 

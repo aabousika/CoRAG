@@ -1,7 +1,7 @@
 """Answer synthesis with citation support."""
 
 import logging
-import re#للتعامل مع الـ regex (سنستخدمه لاستخراج [1], [2] من النص)
+import re  #للتعامل مع الـ regex (سنستخدمه لاستخراج [1], [2] من النص)
 
 from corag.controller.base import Controller, GenerationConfig
 from corag.corpus.document import Chunk

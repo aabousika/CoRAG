@@ -2,13 +2,15 @@
 
 import json
 import logging
-import pickle# لحفظ واسترجاع كائنات Python (مثل docstore)
+import pickle  # لحفظ واسترجاع كائنات Python (مثل docstore)
 from pathlib import Path
 
-import faiss# مكتبة FAISS من Facebook للبحث السريع في المتجهات
+import faiss  # مكتبة FAISS من Facebook للبحث السريع في المتجهات
 import numpy as np
 
-from corag.corpus.document import Chunk# استيراد كلاس Chunk الذي يمثل جزء من النص (document chunk)
+from corag.corpus.document import (
+    Chunk,  # استيراد كلاس Chunk الذي يمثل جزء من النص (document chunk)
+)
 
 logger = logging.getLogger(__name__)
 

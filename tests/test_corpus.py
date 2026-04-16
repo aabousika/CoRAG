@@ -1,11 +1,13 @@
 """Tests for corpus module."""
 
 import json
-import tempfile# لإنشاء ملفات ومجلدات مؤقتة أثناء الاختبار
+import tempfile  # لإنشاء ملفات ومجلدات مؤقتة أثناء الاختبار
 from pathlib import Path
 
 from corag.corpus.document import Chunk, Document
-from corag.corpus.ingest import CorpusIngestor# كلاس مسؤول عن قراءة البيانات (مثلاً من JSONL)
+from corag.corpus.ingest import (
+    CorpusIngestor,  # كلاس مسؤول عن قراءة البيانات (مثلاً من JSONL)
+)
 
 
 def test_document_to_dict(sample_document):

@@ -1,8 +1,8 @@
 """Evaluation metrics for QA and retrieval."""
 
-import re# للتعامل مع النصوص باستخدام Regular Expressions (مثل حذف كلمات معينة)
-import string # يحتوي على رموز جاهزة مثل علامات الترقيم
-from collections import Counter# لحساب تكرار الكلمات (مهم في F1 score)
+import re  # للتعامل مع النصوص باستخدام Regular Expressions (مثل حذف كلمات معينة)
+import string  # يحتوي على رموز جاهزة مثل علامات الترقيم
+from collections import Counter  # لحساب تكرار الكلمات (مهم في F1 score)
 
 
 def normalize_answer(text: str) -> str:

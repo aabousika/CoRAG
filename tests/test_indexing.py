@@ -1,6 +1,6 @@
 """Tests for indexing module."""
 
-import tempfile# لإنشاء مجلدات مؤقتة (تُحذف تلقائياً بعد الاختبار)
+import tempfile  # لإنشاء مجلدات مؤقتة (تُحذف تلقائياً بعد الاختبار)
 from pathlib import Path
 
 from corag.indexing.index import FAISSIndex

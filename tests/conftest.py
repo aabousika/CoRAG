@@ -1,7 +1,7 @@
 """Pytest configuration and fixtures."""
 
 import numpy as np
-import pytest# استيراد pytest لإنشاء اختبارات و fixtures
+import pytest  # استيراد pytest لإنشاء اختبارات و fixtures
 
 from corag.corpus.chunker import Chunker
 from corag.corpus.document import Chunk, Document
@@ -89,4 +89,4 @@ def mock_embeddings():
 def faiss_index():
     """Create a FAISS index for testing."""
     return FAISSIndex(dimension=128, index_type="Flat")
-    
+

@@ -79,7 +79,7 @@ def main(
     output: str | None,
 ) -> None:
     """Run CoRAG multi-step retrieval search."""
-    index_dir_obj = Path(index_dir)# تحويل المسار
+    index_dir_obj = Path(index_dir)  # تحويل المسار
 
     # Load index
     logger.info(f"Loading index from {index_dir_obj}")
@@ -126,17 +126,19 @@ def main(
         f"\nRetrieved {state.total_chunks_retrieved} chunks across {len(state.steps)} steps"
     )
     print(f"Unique chunks: {len(state.get_unique_chunks())}")
-    print(f"Is sufficient: {state.is_sufficient}")# هل النظام يعتبر الإجابة كافية
-    print("\nExecuted queries:")# عرض queries التي تم تنفيذها
+    print(f"Is sufficient: {state.is_sufficient}")  # هل النظام يعتبر الإجابة كافية
+    print("\nExecuted queries:")  # عرض queries التي تم تنفيذها
     for i, query in enumerate(state.executed_queries, 1):
         print(f"  {i}. {query}")
 
     # Save trace if output specified
     if output:
         output_path = Path(output)
-        output_path.parent.mkdir(parents=True, exist_ok=True)# إنشاء المجلد إذا غير موجود
+        output_path.parent.mkdir(
+            parents=True, exist_ok=True
+        )  # إنشاء المجلد إذا غير موجود
 
-        with open(output_path, "w") as f:# حفظ الحالة كاملة
+        with open(output_path, "w") as f:  # حفظ الحالة كاملة
             json.dump(state.to_dict(), f, indent=2)
 
         logger.info(f"Saved trace to {output_path}")

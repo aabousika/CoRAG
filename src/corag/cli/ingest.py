@@ -15,8 +15,10 @@ logger = logging.getLogger(__name__)
 
 
 @click.command()
-@click.argument("input_path", type=click.Path(exists=True))# المسار المدخل (ملف أو مجلد)
-@click.argument("output_path", type=click.Path())# المسار الناتج (ملف سيتم إنشاؤه)
+@click.argument(
+    "input_path", type=click.Path(exists=True)
+)  # المسار المدخل (ملف أو مجلد)
+@click.argument("output_path", type=click.Path())  # المسار الناتج (ملف سيتم إنشاؤه)
 @click.option("--max-docs", type=int, default=None, help="Maximum documents to ingest")
 @click.option("--pattern", default="*.jsonl", help="File pattern for directory input")
 def main(input_path: str, output_path: str, max_docs: int | None, pattern: str) -> None:

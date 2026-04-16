@@ -31,13 +31,15 @@ class EvaluationResult:
     question: str
     prediction: str
     ground_truth: str
-    em: float# Exact Match
+    em: float  # Exact Match
     f1: float
     num_steps: int
     num_chunks: int
     num_unique_chunks: int
-    latency: float# زمن التنفيذ
-    retrieval_state: dict[str, Any] | None = None # الحالة الكاملة للاسترجاع (لتحليل متقدم)
+    latency: float  # زمن التنفيذ
+    retrieval_state: dict[str, Any] | None = (
+        None  # الحالة الكاملة للاسترجاع (لتحليل متقدم)
+    )
 
 
 @dataclass
@@ -73,7 +75,7 @@ class EvaluationReport:
             "efficiency": {
                 "avg_latency_seconds": self.avg_latency,
             },
-        }#هذا مهم لعرض النتائج أو حفظها
+        }  # هذا مهم لعرض النتائج أو حفظها
 
 
 class Evaluator:
@@ -83,7 +85,7 @@ class Evaluator:
         self,
         retrieval_pipeline: RetrievalPipeline,
         synthesizer: Synthesizer,
-        dataset_loader: DatasetLoader | None = None,#هذا مهم لعرض النتائج أو حفظها
+        dataset_loader: DatasetLoader | None = None,  # هذا مهم لعرض النتائج أو حفظها
     ):
         """Initialize evaluator.
 
@@ -119,9 +121,9 @@ class Evaluator:
         results = []
         examples = self.dataset_loader.load_dataset(dataset_name, split, max_examples)
 
-        for example in tqdm(list(examples), desc="Evaluating"):#حلقة على كل سؤال
+        for example in tqdm(list(examples), desc="Evaluating"):  # حلقة على كل سؤال
             result = self._evaluate_example(example)
-            results.append(result)#
+            results.append(result)  #
 
         # Aggregate metrics
         report = self._aggregate_results(dataset_name, split, results)
@@ -203,7 +205,9 @@ class Evaluator:
 
         answer = re.sub(r"\[\d+\]", "", answer)
 
-        return answer.strip()#حذف الفراغات (spaces) أو الأحرف الزائدة من بداية ونهاية النص
+        return (
+            answer.strip()
+        )  # حذف الفراغات (spaces) أو الأحرف الزائدة من بداية ونهاية النص
 
     def _aggregate_results(
         self, dataset: str, split: str, results: list[EvaluationResult]
@@ -254,10 +258,10 @@ class Evaluator:
         )
 
     def _save_results(self, report: EvaluationReport, output_path: Path) -> None:
-          # تعريف دالة لحفظ نتائج التقييم
-    # report: يحتوي كل نتائج التقييم (EvaluationReport)
-    # output_path: المسار الذي سيتم حفظ الملفات فيه
-    # -> None: الدالة لا ترجع شيء
+        # تعريف دالة لحفظ نتائج التقييم
+        # report: يحتوي كل نتائج التقييم (EvaluationReport)
+        # output_path: المسار الذي سيتم حفظ الملفات فيه
+        # -> None: الدالة لا ترجع شيء
         """Save evaluation results to file.
 
         Args:
@@ -266,16 +270,16 @@ class Evaluator:
         """
         output_path.parent.mkdir(parents=True, exist_ok=True)
         # إنشاء المجلد (folder) إذا لم يكن موجود
-    # parents=True → ينشئ كل المجلدات الأب
-    # exist_ok=True → لا يعطي خطأ إذا كان المجلد موجود
+        # parents=True → ينشئ كل المجلدات الأب
+        # exist_ok=True → لا يعطي خطأ إذا كان المجلد موجود
 
         # Save summary as JSON
         summary_path = output_path.with_suffix(".json")
-         # إنشاء مسار جديد بنفس الاسم لكن بامتداد .json
-    # مثال: results → results.json
+        # إنشاء مسار جديد بنفس الاسم لكن بامتداد .json
+        # مثال: results → results.json
         with open(summary_path, "w") as f:
             json.dump(report.to_dict(), f, indent=2)
-             # تحويل التقرير إلى dictionary ثم حفظه كـ JSON
+            # تحويل التقرير إلى dictionary ثم حفظه كـ JSON
         # indent=2 → تنسيق جميل للقراءة
 
         logger.info(f"Saved evaluation summary to {summary_path}")
@@ -298,7 +302,7 @@ class Evaluator:
                 f.write(
                     f'{r.example_id},"{question}","{prediction}","{ground_truth}",'
                     f"{r.em},{r.f1},{r.num_steps},{r.num_chunks},"
-                    f"{r.num_unique_chunks},{r.latency:.2f}\n"#latency (بدقتين عشريتين)
+                    f"{r.num_unique_chunks},{r.latency:.2f}\n"  # latency (بدقتين عشريتين)
                 )
 
         logger.info(f"Saved detailed results to {csv_path}")

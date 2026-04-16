@@ -7,8 +7,10 @@ def test_synthesizer_format_sources(sample_chunks):
     """Test source formatting."""
 
     # Create mock controller (we won't call generate in this test)
-    class MockController:#كلاس وهمي بدل LLM (مثل GPT)
-        def generate(self, prompt, system=None, config=None):#دالة generate ترجع جواب وهمي فيه citations
+    class MockController:  # كلاس وهمي بدل LLM (مثل GPT)
+        def generate(
+            self, prompt, system=None, config=None
+        ):  # دالة generate ترجع جواب وهمي فيه citations
             return "Test answer [1] with citation [2]."
 
         def count_tokens(self, text):
@@ -18,9 +20,9 @@ def test_synthesizer_format_sources(sample_chunks):
     synthesizer = Synthesizer(controller=controller)
 
     sources_text, citations = synthesizer._format_sources(sample_chunks[:3])
-  #  أخذ أول 3 chunks وتحويلهم إلى:
-#- sources_text → نص المصادر
-#- citations → metadata لكل مصدر
+    #  أخذ أول 3 chunks وتحويلهم إلى:
+    # - sources_text → نص المصادر
+    # - citations → metadata لكل مصدر
 
     assert len(citations) == 3
     assert "[1]" in sources_text
@@ -75,8 +77,10 @@ def test_synthesizer_format_answer_with_citations():
     answer = "Paris is the capital [1]."
     citations = [{"id": "1", "title": "Paris Article", "url": "https://example.com"}]
 
-    formatted = synthesizer.format_answer_with_citations(answer, citations)#دمج الجواب مع قائمة المصادر
+    formatted = synthesizer.format_answer_with_citations(
+        answer, citations
+    )  # دمج الجواب مع قائمة المصادر
 
-    assert "## References" in formatted#يجب وجود قسم References
-    assert "[1] Paris Article" in formatted#يجب عرض المصدر
-    assert "https://example.com" in formatted#يجب عرض الرابط
+    assert "## References" in formatted  # يجب وجود قسم References
+    assert "[1] Paris Article" in formatted  # يجب عرض المصدر
+    assert "https://example.com" in formatted  # يجب عرض الرابط

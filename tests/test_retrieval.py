@@ -6,26 +6,26 @@ from corag.retrieval.state import RetrievalState, RetrievalStep
 def test_retrieval_state_add_step(sample_chunks):
     """Test adding retrieval step."""
     state = RetrievalState(original_question="Test question")
-    #إنشاء حالة البحث
-#تحتوي على:
-#- السؤال الأصلي
-#- قائمة steps (فارغة بالبداية)
+    # إنشاء حالة البحث
+    # تحتوي على:
+    # - السؤال الأصلي
+    # - قائمة steps (فارغة بالبداية)
 
-    step = RetrievalStep(#إنشاء خطوة بحث واحدة
+    step = RetrievalStep(  # إنشاء خطوة بحث واحدة
         step_num=1,
-        query="test query",#الاستعلام المستخدم في هذه الخطوة
+        query="test query",  # الاستعلام المستخدم في هذه الخطوة
         chunks=sample_chunks[:3],
-        scores=[0.9, 0.8, 0.7],#درجات التشابه لكل chunk
+        scores=[0.9, 0.8, 0.7],  # درجات التشابه لكل chunk
     )
 
     state.add_step(step)
-   # إضافة step إلى list
-#تسجيل query
-#تحديث عدد chunks
+    # إضافة step إلى list
+    # تسجيل query
+    # تحديث عدد chunks
 
-    assert len(state.steps) == 1#يجب أن يكون لدينا خطوة واحدة
-    assert len(state.executed_queries) == 1#يجب تسجيل query واحد
-    assert state.total_chunks_retrieved == 3#مجموع chunks = 3
+    assert len(state.steps) == 1  # يجب أن يكون لدينا خطوة واحدة
+    assert len(state.executed_queries) == 1  # يجب تسجيل query واحد
+    assert state.total_chunks_retrieved == 3  # مجموع chunks = 3
 
 
 def test_retrieval_state_get_unique_chunks(sample_chunks):
@@ -71,5 +71,5 @@ def test_retrieval_state_to_dict(sample_chunks):
     state_dict = state.to_dict()
 
     assert state_dict["original_question"] == "Test question"
-    assert len(state_dict["steps"]) == 1#خطوة واحدة
-    assert state_dict["steps"][0]["step_num"] == 1#رقم الخطوة صحيح
+    assert len(state_dict["steps"]) == 1  # خطوة واحدة
+    assert state_dict["steps"][0]["step_num"] == 1  # رقم الخطوة صحيح

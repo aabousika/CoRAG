@@ -17,7 +17,7 @@ class RetrievalStep:
     query: str
     chunks: list[Chunk]
     scores: list[float]
-    rationale: str = "" # سبب تنفيذ هذه الخطوة (اختياري)
+    rationale: str = ""  # سبب تنفيذ هذه الخطوة (اختياري)
     metadata: dict[str, Any] = field(default_factory=dict)
 
 
@@ -28,32 +28,34 @@ class RetrievalState:
     original_question: str
     steps: list[RetrievalStep] = field(default_factory=list)
     executed_queries: list[str] = field(default_factory=list)
-    viewed_chunk_ids: set[str] = field(default_factory=set)# IDs للمقاطع التي تم استخدامها (لمنع التكرار)
+    viewed_chunk_ids: set[str] = field(
+        default_factory=set
+    )  # IDs للمقاطع التي تم استخدامها (لمنع التكرار)
     answered_aspects: list[str] = field(default_factory=list)
     gaps: list[str] = field(default_factory=list)
-    contradictions: list[str] = field(default_factory=list)# التناقضات في المعلومات
+    contradictions: list[str] = field(default_factory=list)  # التناقضات في المعلومات
     is_sufficient: bool = False
     total_chunks_retrieved: int = 0
-    total_tokens_used: int = 0# عدد tokens المستخدمة (LLM cost tracking)
+    total_tokens_used: int = 0  # عدد tokens المستخدمة (LLM cost tracking)
 
     def add_step(self, step: RetrievalStep) -> None:
         """Add a retrieval step."""
         self.steps.append(step)
-        self.executed_queries.append(step.query) # تسجيل query المستخدم
+        self.executed_queries.append(step.query)  # تسجيل query المستخدم
         for chunk in step.chunks:
-            self.viewed_chunk_ids.add(chunk.chunk_id)# تسجيل ID لمنع التكرار
-        self.total_chunks_retrieved += len(step.chunks) # تحديث عدد النتائج
+            self.viewed_chunk_ids.add(chunk.chunk_id)  # تسجيل ID لمنع التكرار
+        self.total_chunks_retrieved += len(step.chunks)  # تحديث عدد النتائج
 
     def get_all_chunks(self) -> list[Chunk]:
         """Get all retrieved chunks across steps."""
         all_chunks = []
         for step in self.steps:
-            all_chunks.extend(step.chunks)# إضافة جميع النتائج
+            all_chunks.extend(step.chunks)  # إضافة جميع النتائج
         return all_chunks
 
     def get_unique_chunks(self) -> list[Chunk]:
         """Get unique chunks (deduplicated by chunk_id)."""
-        seen = set()# لتتبع الـ IDs
+        seen = set()  # لتتبع الـ IDs
         unique = []
         for step in self.steps:
             for chunk in step.chunks:
@@ -77,7 +79,7 @@ class RetrievalState:
                     "metadata": s.metadata,
                 }
                 for s in self.steps
-            ],# تحويل كل خطوة إلى dict
+            ],  # تحويل كل خطوة إلى dict
             "executed_queries": self.executed_queries,
             "viewed_chunk_ids": list(self.viewed_chunk_ids),
             "answered_aspects": self.answered_aspects,
@@ -85,5 +87,5 @@ class RetrievalState:
             "contradictions": self.contradictions,
             "is_sufficient": self.is_sufficient,
             "total_chunks_retrieved": self.total_chunks_retrieved,
-            "total_tokens_used": self.total_tokens_used, # تكلفة الـ LLM
+            "total_tokens_used": self.total_tokens_used,  # تكلفة الـ LLM
         }

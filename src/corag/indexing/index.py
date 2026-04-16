@@ -38,11 +38,11 @@ class FAISSIndex:
         self.nlist = nlist
         self.metric = metric
 
-        self.index: faiss.Index | None = None# كائن FAISS (سيتم إنشاؤه لاحقًا)
-        self.docstore: dict[int, Chunk] = {}# قاموس يربط id → chunk
-        self.is_trained = False # هل تم تدريب الفهرس (مهم لـ IVF)
+        self.index: faiss.Index | None = None  # كائن FAISS (سيتم إنشاؤه لاحقًا)
+        self.docstore: dict[int, Chunk] = {}  # قاموس يربط id → chunk
+        self.is_trained = False  # هل تم تدريب الفهرس (مهم لـ IVF)
 
-        self._initialize_index() # إنشاء الفهرس حسب الإعدادات
+        self._initialize_index()  # إنشاء الفهرس حسب الإعدادات
 
     def _initialize_index(self) -> None:
         """Initialize the FAISS index."""
@@ -50,7 +50,9 @@ class FAISSIndex:
             if self.index_type == "Flat":
                 self.index = faiss.IndexFlatIP(self.dimension)
             elif self.index_type == "IVF":
-                quantizer = faiss.IndexFlatIP(self.dimension)#يستخدم لتقسيم البيانات إلى clusters
+                quantizer = faiss.IndexFlatIP(
+                    self.dimension
+                )  # يستخدم لتقسيم البيانات إلى clusters
                 self.index = faiss.IndexIVFFlat(
                     quantizer, self.dimension, self.nlist, faiss.METRIC_INNER_PRODUCT
                 )
@@ -81,14 +83,18 @@ class FAISSIndex:
         if len(embeddings) != len(chunks):
             raise ValueError("Number of embeddings and chunks must match")
 
-        assert self.index is not None, "Index must be initialized"#تأكد أن الفهرس موجود
+        assert self.index is not None, (
+            "Index must be initialized"
+        )  # تأكد أن الفهرس موجود
 
         logger.info(f"Building index with {len(embeddings)} vectors")
 
         # Train index if needed
         if self.index_type == "IVF" and not self.is_trained:
             logger.info("Training IVF index...")
-            self.index.train(embeddings.astype(np.float32))#IVF يحتاج تدريب لتقسيم البيانات
+            self.index.train(
+                embeddings.astype(np.float32)
+            )  # IVF يحتاج تدريب لتقسيم البيانات
             self.is_trained = True
 
         # Add vectors to index
@@ -123,12 +129,16 @@ class FAISSIndex:
 
         # Search
         k = min(k, self.index.ntotal)
-        scores, indices = self.index.search(query_embedding.astype(np.float32), k)#indices: مواقع النتائج
+        scores, indices = self.index.search(
+            query_embedding.astype(np.float32), k
+        )  # indices: مواقع النتائج
 
         # Retrieve chunks
         chunks = []
         valid_scores = []
-        for idx, score in zip(indices[0], scores[0], strict=False):#امشِ على كل id مع الدرجة الخاصة به في نفس الوقت
+        for idx, score in zip(
+            indices[0], scores[0], strict=False
+        ):  # امشِ على كل id مع الدرجة الخاصة به في نفس الوقت
             if idx in self.docstore:
                 chunks.append(self.docstore[idx])
                 valid_scores.append(float(score))
@@ -194,12 +204,14 @@ class FAISSIndex:
 
         # Load FAISS index
         index_path = index_dir / "index.faiss"
-        instance.index = faiss.read_index(str(index_path))#تحميل الفهرس
+        instance.index = faiss.read_index(str(index_path))  # تحميل الفهرس
         instance.is_trained = metadata["is_trained"]
 
         # Load docstore
         docstore_path = index_dir / "docstore.pkl"
-        with open(docstore_path, "rb") as f:#Read Binary = قراءة ملف بصيغة ثنائية (Binary mode)
+        with open(
+            docstore_path, "rb"
+        ) as f:  # Read Binary = قراءة ملف بصيغة ثنائية (Binary mode)
             instance.docstore = pickle.load(f)
 
         logger.info(

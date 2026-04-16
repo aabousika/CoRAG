@@ -26,7 +26,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Global state
-app_state: dict[str, object] = {}# الحالة العامة للتطبيق (تخزين pipeline وsynthesizer)
+app_state: dict[str, object] = {}  # الحالة العامة للتطبيق (تخزين pipeline وsynthesizer)
 
 
 class AskRequest(BaseModel):
@@ -54,7 +54,8 @@ app = FastAPI(
     version="0.1.0",
 )
 
-#للتحقق من أن السيرفر يعمل.
+
+# للتحقق من أن السيرفر يعمل.
 @app.get("/healthz")
 async def health_check() -> dict:
     """Health check endpoint."""
@@ -144,10 +145,10 @@ def main(
     # Load components
     logger.info(f"Loading index from {index_dir_obj}")
     index = FAISSIndex.load(index_dir_obj)
-  #تحميل قاعدة البيانات ونموذج الـ embeddings.
+    # تحميل قاعدة البيانات ونموذج الـ embeddings.
     logger.info(f"Loading embedder: {embedding_model}")
     embedder = Embedder(model_name=embedding_model, device=device)
-#إعداد مزود الـ LLM (OpenAI) والتحقق من وجود الـ API Key.
+    # إعداد مزود الـ LLM (OpenAI) والتحقق من وجود الـ API Key.
     if provider == "openai":
         api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
@@ -174,7 +175,9 @@ def main(
     app_state["model_name"] = model
 
     logger.info(f"Starting server on {host}:{port}")
-    uvicorn.run(app, host=host, port=port)# تشغيل السيرفر باستخدام uvicorn على العنوان والمنفذ المحددين.
+    uvicorn.run(
+        app, host=host, port=port
+    )  # تشغيل السيرفر باستخدام uvicorn على العنوان والمنفذ المحددين.
 
 
 if __name__ == "__main__":

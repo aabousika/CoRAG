@@ -43,20 +43,28 @@ def f1_score(prediction: str, ground_truth: str) -> float:
     Returns:
         F1 score between 0 and 1
     """
-    pred_tokens = normalize_answer(prediction).split() # تقسيم الإجابة المتوقعة إلى كلمات
+    pred_tokens = normalize_answer(
+        prediction
+    ).split()  # تقسيم الإجابة المتوقعة إلى كلمات
     gt_tokens = normalize_answer(ground_truth).split()
 
     if len(pred_tokens) == 0 or len(gt_tokens) == 0:
         return 0.0 if len(pred_tokens) != len(gt_tokens) else 1.0
 
-    common = Counter(pred_tokens) & Counter(gt_tokens)# إيجاد الكلمات المشتركة بين الإجابتين
+    common = Counter(pred_tokens) & Counter(
+        gt_tokens
+    )  # إيجاد الكلمات المشتركة بين الإجابتين
     num_common = sum(common.values())
 
     if num_common == 0:
         return 0.0
 
-    precision = num_common / len(pred_tokens)# precision = كم كلمة صحيحة من الإجابة المتوقعة
-    recall = num_common / len(gt_tokens) # recall = كم كلمة من الإجابة الصحيحة تم التقاطها
+    precision = num_common / len(
+        pred_tokens
+    )  # precision = كم كلمة صحيحة من الإجابة المتوقعة
+    recall = num_common / len(
+        gt_tokens
+    )  # recall = كم كلمة من الإجابة الصحيحة تم التقاطها
     f1 = (2 * precision * recall) / (precision + recall)
 
     return f1
@@ -74,7 +82,9 @@ def max_f1_over_ground_truths(prediction: str, ground_truths: list[str]) -> floa
     """
     if not ground_truths:
         return 0.0
-    return max(f1_score(prediction, gt) for gt in ground_truths) # حساب F1 مع كل إجابة واختيار الأفضل
+    return max(
+        f1_score(prediction, gt) for gt in ground_truths
+    )  # حساب F1 مع كل إجابة واختيار الأفضل
 
 
 def max_em_over_ground_truths(prediction: str, ground_truths: list[str]) -> float:
@@ -89,7 +99,9 @@ def max_em_over_ground_truths(prediction: str, ground_truths: list[str]) -> floa
     """
     if not ground_truths:
         return 0.0
-    return max(exact_match(prediction, gt) for gt in ground_truths)# إذا تطابق مع واحدة → 1
+    return max(
+        exact_match(prediction, gt) for gt in ground_truths
+    )  # إذا تطابق مع واحدة → 1
 
 
 def compute_retrieval_recall(
@@ -107,8 +119,10 @@ def compute_retrieval_recall(
     if not gold_doc_ids:
         return 0.0
 
-    overlap = len(retrieved_doc_ids & gold_doc_ids)# تقاطع المجموعتين (documents المشتركة)
-    return overlap / len(gold_doc_ids) # recall = كم وثيقة صحيحة تم استرجاعها
+    overlap = len(
+        retrieved_doc_ids & gold_doc_ids
+    )  # تقاطع المجموعتين (documents المشتركة)
+    return overlap / len(gold_doc_ids)  # recall = كم وثيقة صحيحة تم استرجاعها
 
 
 def compute_retrieval_precision(

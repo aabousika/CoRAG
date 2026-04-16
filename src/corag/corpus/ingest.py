@@ -29,14 +29,14 @@ class CorpusIngestor:
         count = 0
         with open(path, encoding="utf-8") as f:
             for line_num, line in enumerate(f, 1):
-                if max_docs and count >= max_docs:# إذا وصلنا للحد الأقصى
+                if max_docs and count >= max_docs:  # إذا وصلنا للحد الأقصى
                     break  # إيقاف القراءة
 
                 try:
                     data = json.loads(line)
-                    doc = self._parse_document(data, line_num)# تحويله إلى Document
-                    if doc:# إذا كان صالح
-                        yield doc # إرجاع المستند (lazy loading)
+                    doc = self._parse_document(data, line_num)  # تحويله إلى Document
+                    if doc:  # إذا كان صالح
+                        yield doc  # إرجاع المستند (lazy loading)
                         count += 1
                 except json.JSONDecodeError as e:
                     logger.warning(f"Skipping invalid JSON at line {line_num}: {e}")
@@ -58,13 +58,15 @@ class CorpusIngestor:
         # Required fields  # التأكد من وجود الحقول الأساسية
         if not all(k in data for k in ["id", "title", "text"]):
             logger.warning(f"Line {line_num}: Missing required fields")
-            return None # تجاهل السطر
+            return None  # تجاهل السطر
 
         # Parse timestamp if present
         timestamp = None
         if "timestamp" in data:
             try:
-                timestamp = datetime.fromisoformat(data["timestamp"])# تحويل النص إلى datetime
+                timestamp = datetime.fromisoformat(
+                    data["timestamp"]
+                )  # تحويل النص إلى datetime
             except (ValueError, TypeError):
                 logger.warning(f"Line {line_num}: Invalid timestamp format")
 
@@ -92,13 +94,13 @@ class CorpusIngestor:
             Document objects
         """
         count = 0
-        for file_path in sorted(directory.glob(pattern)):# جلب كل الملفات المطابقة
+        for file_path in sorted(directory.glob(pattern)):  # جلب كل الملفات المطابقة
             remaining = max_docs - count if max_docs else None
-            for doc in self.ingest_jsonl(file_path, remaining):# قراءة كل ملف
-                yield doc# إرجاع المستند
+            for doc in self.ingest_jsonl(file_path, remaining):  # قراءة كل ملف
+                yield doc  # إرجاع المستند
                 count += 1
-                if max_docs and count >= max_docs:# إذا وصلنا للحد
-                    return# إيقاف العملية بالكامل
+                if max_docs and count >= max_docs:  # إذا وصلنا للحد
+                    return  # إيقاف العملية بالكامل
 
     def save_documents(self, documents: list[Document], output_path: Path) -> None:
         """Save documents to JSONL file.
@@ -107,11 +109,17 @@ class CorpusIngestor:
             documents: Documents to save
             output_path: Output file path
         """
-        output_path.parent.mkdir(parents=True, exist_ok=True)# إنشاء المجلد إذا غير موجود
+        output_path.parent.mkdir(
+            parents=True, exist_ok=True
+        )  # إنشاء المجلد إذا غير موجود
 
         with open(output_path, "w", encoding="utf-8") as f:
             for doc in documents:
-                json_line = json.dumps(doc.to_dict(), ensure_ascii=False)# تحويله إلى JSON ensure_ascii=false يتم حفظ النص كما هو
-                f.write(json_line + "\n")# كتابة كل مستند في سطر
+                json_line = json.dumps(
+                    doc.to_dict(), ensure_ascii=False
+                )  # تحويله إلى JSON ensure_ascii=false يتم حفظ النص كما هو
+                f.write(json_line + "\n")  # كتابة كل مستند في سطر
 
-        logger.info(f"Saved {len(documents)} documents to {output_path}")# تسجيل عدد المحفوظ
+        logger.info(
+            f"Saved {len(documents)} documents to {output_path}"
+        )  # تسجيل عدد المحفوظ

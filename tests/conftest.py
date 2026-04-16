@@ -8,14 +8,14 @@ from corag.corpus.document import Chunk, Document
 from corag.indexing.index import FAISSIndex
 
 
-@pytest.fixture# تعريف fixture (بيانات جاهزة تستخدم في الاختبارات)
+@pytest.fixture  # تعريف fixture (بيانات جاهزة تستخدم في الاختبارات)
 def sample_document():
     """Create a sample document for testing."""
     return Document(
         id="doc1",
         title="Test Document",
         text="This is a test document. It has multiple sentences. We use it for testing.",
-        url="https://example.com/doc1",# رابط المستند
+        url="https://example.com/doc1",  # رابط المستند
         sections=["Introduction"],
     )
 
@@ -32,7 +32,8 @@ def sample_documents():
         Document(
             id="doc2",
             title="Document Two",
-            text="This is the second document. " * 50, # تكرار الجملة 50 مرة ليصبح النص طويل (حتى يتم تقسيمه إلى chunks)
+            text="This is the second document. "
+            * 50,  # تكرار الجملة 50 مرة ليصبح النص طويل (حتى يتم تقسيمه إلى chunks)
         ),
     ]
 
@@ -61,7 +62,8 @@ def sample_chunks():
             doc_id="doc1",
             text=f"This is chunk number {i}.",
             start_char=i * 30,
-            end_char=(i + 1) * 30,#هذا يعني أن كل chunk يمثل مقطع بطول 30 حرف داخل النص.
+            end_char=(i + 1)
+            * 30,  # هذا يعني أن كل chunk يمثل مقطع بطول 30 حرف داخل النص.
             tokens=6,
             doc_title="Test Doc",
         )
@@ -89,4 +91,3 @@ def mock_embeddings():
 def faiss_index():
     """Create a FAISS index for testing."""
     return FAISSIndex(dimension=128, index_type="Flat")
-

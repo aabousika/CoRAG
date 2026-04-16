@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 @click.command()
 @click.argument("corpus_path", type=click.Path(exists=True))
-@click.argument("index_dir", type=click.Path())# ثاني argument: مكان حفظ الـ index
+@click.argument("index_dir", type=click.Path())  # ثاني argument: مكان حفظ الـ index
 @click.option(
     "--embedding-model",
     default="sentence-transformers/msmarco-distilbert-base-v4",
@@ -27,7 +27,9 @@ logger = logging.getLogger(__name__)
 )
 @click.option("--device", default="cpu", help="Device (cpu/cuda/mps)")
 @click.option("--index-type", default="Flat", help="FAISS index type (Flat/IVF)")
-@click.option("--nlist", default=100, type=int, help="Number of clusters for IVF")# عدد الـ clusters في IVF
+@click.option(
+    "--nlist", default=100, type=int, help="Number of clusters for IVF"
+)  # عدد الـ clusters في IVF
 @click.option("--chunk-size", default=512, type=int, help="Chunk size in tokens")
 @click.option("--chunk-overlap", default=64, type=int, help="Chunk overlap in tokens")
 @click.option("--batch-size", default=32, type=int, help="Embedding batch size")
@@ -54,14 +56,16 @@ def main(
 
     # Load documents
     logger.info(f"Loading documents from {corpus_path_obj}")
-    ingestor = CorpusIngestor()# كلاس مسؤول عن قراءة البيانات
-    documents = list(ingestor.ingest_jsonl(corpus_path_obj, max_docs)) # قراءة ملف JSONL وتحويله إلى قائمة documents
+    ingestor = CorpusIngestor()  # كلاس مسؤول عن قراءة البيانات
+    documents = list(
+        ingestor.ingest_jsonl(corpus_path_obj, max_docs)
+    )  # قراءة ملف JSONL وتحويله إلى قائمة documents
     logger.info(f"Loaded {len(documents)} documents")
 
     # Chunk documents
     logger.info("Chunking documents...")
     chunker = Chunker(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
-    chunks = chunker.chunk_documents(documents)# تقسيم كل document إلى chunks صغيرة
+    chunks = chunker.chunk_documents(documents)  # تقسيم كل document إلى chunks صغيرة
     logger.info(f"Created {len(chunks)} chunks")
 
     # Initialize embedder
@@ -72,8 +76,10 @@ def main(
 
     # Embed chunks
     logger.info("Embedding chunks...")
-    chunk_texts = [c.text for c in chunks]# استخراج النص من كل chunk
-    embeddings = embedder.embed_texts(chunk_texts, show_progress=True)# تحويل النصوص إلى embeddings (vectors)
+    chunk_texts = [c.text for c in chunks]  # استخراج النص من كل chunk
+    embeddings = embedder.embed_texts(
+        chunk_texts, show_progress=True
+    )  # تحويل النصوص إلى embeddings (vectors)
     logger.info(f"Generated embeddings with shape {embeddings.shape}")
 
     # Build index
@@ -86,7 +92,7 @@ def main(
         index_type=index_type,
         nlist=nlist,
     )
-    index.build(embeddings, chunks)# بناء index باستخدام البيانات
+    index.build(embeddings, chunks)  # بناء index باستخدام البيانات
 
     # Save index
     logger.info(f"Saving index to {index_dir_obj}")

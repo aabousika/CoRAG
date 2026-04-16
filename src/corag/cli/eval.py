@@ -24,14 +24,18 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-@click.command() # تعريف CLI
+@click.command()  # تعريف CLI
 @click.option(
     "--dataset",
     required=True,
-    type=click.Choice(["hotpotqa", "2wikimultihopqa"], case_sensitive=False), #case_sensitive=False يعني:لنظام لا يفرّق بين الأحرف الكبيرة والصغيرة
+    type=click.Choice(
+        ["hotpotqa", "2wikimultihopqa"], case_sensitive=False
+    ),  # case_sensitive=False يعني:لنظام لا يفرّق بين الأحرف الكبيرة والصغيرة
     help="Dataset name",
 )
-@click.option("--split", default="validation", help="Dataset split")# نوع البيانات (train / validation / test)
+@click.option(
+    "--split", default="validation", help="Dataset split"
+)  # نوع البيانات (train / validation / test)
 @click.option(
     "--index-dir", required=True, type=click.Path(exists=True), help="Index directory"
 )
@@ -86,7 +90,7 @@ def main(
 
     # Create pipeline and synthesizer
     config = GenerationConfig(temperature=temperature)
-    pipeline = RetrievalPipeline(# pipeline مسؤول عن الاسترجاع multi-step
+    pipeline = RetrievalPipeline(  # pipeline مسؤول عن الاسترجاع multi-step
         index=index,
         embedder=embedder,
         controller=controller,

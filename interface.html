@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CoRAG Legal Search</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0a0e1a; color: #e0e0e0; min-height: 100vh; }
+  
+  .header { background: linear-gradient(135deg, #0a0e1a 0%, #1a1f3a 100%); padding: 30px 20px; text-align: center; border-bottom: 1px solid #2a3050; }
+  .header img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px; }
+  .header h1 { font-size: 2.5em; background: linear-gradient(90deg, #00b4ff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .header p { color: #8892b0; margin-top: 5px; font-size: 1em; }
+
+  .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+
+  .search-box { background: #1a1f3a; border-radius: 16px; padding: 25px; border: 1px solid #2a3050; }
+  textarea { width: 100%; background: #0d1120; color: #e0e0e0; border: 1px solid #2a3050; border-radius: 10px; padding: 15px; font-size: 15px; height: 100px; resize: none; outline: none; }
+  textarea:focus { border-color: #00b4ff; }
+  textarea::placeholder { color: #4a5568; }
+
+  .options { display: flex; gap: 15px; margin-top: 15px; align-items: center; }
+  .option { display: flex; flex-direction: column; gap: 4px; }
+  .option label { font-size: 12px; color: #8892b0; }
+  .option input { background: #0d1120; color: #e0e0e0; border: 1px solid #2a3050; border-radius: 8px; padding: 8px 12px; width: 80px; outline: none; }
+
+  button { margin-left: auto; padding: 12px 35px; background: linear-gradient(135deg, #00b4ff, #a855f7); color: white; border: none; border-radius: 10px; font-size: 15px; cursor: pointer; font-weight: bold; }
+  button:hover { opacity: 0.9; }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .loading { display: none; text-align: center; margin: 30px 0; }
+  .loading-dots span { display: inline-block; width: 10px; height: 10px; background: #00b4ff; border-radius: 50%; margin: 0 4px; animation: bounce 1.2s infinite; }
+  .loading-dots span:nth-child(2) { animation-delay: 0.2s; background: #a855f7; }
+  .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce { 0%,80%,100%{transform:scale(0)} 40%{transform:scale(1)} }
+  .loading p { color: #8892b0; margin-top: 10px; }
+
+  .result { display: none; margin-top: 30px; }
+  .stats { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  .stat { background: linear-gradient(135deg, #1a1f3a, #2a3050); padding: 8px 18px; border-radius: 20px; font-size: 13px; border: 1px solid #3a4060; }
+  .stat span { color: #00b4ff; font-weight: bold; }
+
+  .answer-card { background: #1a1f3a; border-radius: 16px; padding: 25px; border: 1px solid #2a3050; line-height: 1.9; }
+  .answer-card h3 { color: #00b4ff; margin: 20px 0 10px; }
+  .answer-card h4 { color: #a855f7; margin: 15px 0 8px; }
+
+  .refs { background: #0d1120; border-radius: 16px; padding: 20px; margin-top: 20px; border: 1px solid #2a3050; }
+  .refs h4 { color: #00b4ff; margin-bottom: 15px; font-size: 1em; }
+  .ref-item { font-size: 13px; color: #8892b0; padding: 6px 0; border-bottom: 1px solid #1a1f3a; }
+  .ref-num { color: #a855f7; font-weight: bold; margin-right: 8px; }
+
+  .error { background: #2d1515; border: 1px solid #ff4444; border-radius: 10px; padding: 15px; margin-top: 20px; color: #ff8888; display: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img src="data/CoRAG.png" alt="CoRAG Logo">
+  <h1>CoRAG</h1>
+  <p>Adaptive Multi-Step Retrieval for Legal Queries</p>
+</div>
+
+<div class="container">
+  <div class="search-box">
+    <textarea id="question" placeholder="Ask a legal question... e.g. What are the principles for awarding indemnity costs?"></textarea>
+    <div class="options">
+      <div class="option">
+        <label>Max Steps</label>
+        <input type="number" id="max_steps" value="4" min="1" max="10">
+      </div>
+      <div class="option">
+        <label>Chunks (k)</label>
+        <input type="number" id="k" value="8" min="1" max="20">
+      </div>
+      <button onclick="ask()" id="btn">🔍 Search</button>
+    </div>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="loading-dots"><span></span><span></span><span></span></div>
+    <p>Searching legal database...</p>
+  </div>
+
+  <div class="error" id="error">⚠️ Could not connect to server. Make sure CoRAG server is running.</div>
+
+  <div class="result" id="result">
+    <div class="stats" id="stats"></div>
+    <div class="answer-card" id="answer-text"></div>
+    <div class="refs" id="refs"></div>
+  </div>
+</div>
+
+<script>
+async function ask() {
+  const q = document.getElementById('question').value.trim();
+  if (!q) return alert('Please enter a question');
+  
+  const max_steps = parseInt(document.getElementById('max_steps').value);
+  const k = parseInt(document.getElementById('k').value);
+  
+  document.getElementById('btn').disabled = true;
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('error').style.display = 'none';
+
+  try {
+    const res = await fetch('http://127.0.0.1:8000/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question: q, max_steps, k })
+    });
+    const data = await res.json();
+
+    // Stats
+    document.getElementById('stats').innerHTML = `
+      <div class="stat">📌 Steps: <span>${data.num_steps}</span></div>
+      <div class="stat">📄 Chunks: <span>${data.num_chunks}</span></div>
+      <div class="stat">📚 References: <span>${data.citations.length}</span></div>
+    `;
+
+    // Answer
+    let html = data.answer
+      .replace(/### (.*)/g, '<h3>$1</h3>')
+      .replace(/#### (.*)/g, '<h4>$1</h4>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br>');
+    document.getElementById('answer-text').innerHTML = html;
+
+    // References
+    let refs = '<h4>📚 References</h4>';
+    data.citations.forEach(c => {
+      refs += `<div class="ref-item"><span class="ref-num">[${c.id}]</span>${c.title}</div>`;
+    });
+    document.getElementById('refs').innerHTML = refs;
+
+    document.getElementById('result').style.display = 'block';
+  } catch(e) {
+    document.getElementById('error').style.display = 'block';
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('btn').disabled = false;
+}
+
+document.getElementById('question').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); ask(); }
+});
+</script>
+</body>
+</html>

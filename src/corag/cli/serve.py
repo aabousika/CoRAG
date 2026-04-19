@@ -7,7 +7,8 @@ from pathlib import Path
 import click  # لإنشاء CLI (Command Line Interface)
 import uvicorn  # لتشغيل FastAPI server
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException  # لإنشاء API
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware  # لإنشاء API
 from pydantic import BaseModel  # لإنشاء نماذج البيانات للتحقق من صحة الطلبات
 
 from corag.controller.base import GenerationConfig
@@ -49,10 +50,13 @@ class AskResponse(BaseModel):
 
 
 app = FastAPI(
+
     title="CoRAG API",
     description="Adaptive Multi-Step Retrieval for Complex Queries",
     version="0.1.0",
 )
+
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 
 # للتحقق من أن السيرفر يعمل.

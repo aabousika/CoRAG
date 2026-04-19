@@ -1,0 +1,738 @@
+{
+  "original_question": "What are the principles for awarding indemnity costs?",
+  "steps": [
+    {
+      "step_num": 1,
+      "query": "What are indemnity costs in the context of legal proceedings?",
+      "num_chunks": 8,
+      "chunks": [
+        {
+          "chunk_id": "e1a45553c5e90827",
+          "doc_id": "Case24054",
+          "text": "I have considered this issue, but take the view that an order for indemnity costs is inappropriate in these circumstances. As a general proposition, indemnity costs are awarded to an innocent party where, inter alia , the circumstances of the case are such as to warrant the Court in departing from the usual course. There should be some special or unusual feature in the case to justify the Court in departing from the ordinary practice (cf Colgate-Palmolive Company v Cussons Pty Limited (1993) 46 FCR 225 at 233). An example of an award of indemnity costs against a party to proceedings in circumstances involving the adjournment of a trial was David Charles Robinson v Aware Industries Ltd (unreported, Weinberg J, 1 October 1998) where the reason for the vacation of the trial dates was the complete failure of the applicant in that case to prosecute his application including multiple failures to comply with directions of the Court.",
+          "start_char": 0,
+          "end_char": 939,
+          "tokens": 204,
+          "doc_title": "David Charles Robinson v Aware Industries Ltd (unreported, Weinberg J, 1 October 1998)",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "d0880d3a245244a4",
+          "doc_id": "Case24053",
+          "text": "I have considered this issue, but take the view that an order for indemnity costs is inappropriate in these circumstances. As a general proposition, indemnity costs are awarded to an innocent party where, inter alia , the circumstances of the case are such as to warrant the Court in departing from the usual course. There should be some special or unusual feature in the case to justify the Court in departing from the ordinary practice (cf Colgate-Palmolive Company v Cussons Pty Limited (1993) 46 FCR 225 at 233). An example of an award of indemnity costs against a party to proceedings in circumstances involving the adjournment of a trial was David Charles Robinson v Aware Industries Ltd (unreported, Weinberg J, 1 October 1998) where the reason for the vacation of the trial dates was the complete failure of the applicant in that case to prosecute his application including multiple failures to comply with directions of the Court.",
+          "start_char": 0,
+          "end_char": 939,
+          "tokens": 204,
+          "doc_title": "Colgate-Palmolive Company v Cussons Pty Limited (1993) 46 FCR 225",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "62b0aa099668bc13",
+          "doc_id": "Case3417",
+          "text": "One instance of an appropriate case for indemnity costs is described as follows by Woodward J in Fountain Selected Meats (Sales) Pty Ltd v International Produce Merchants Pty Ltd (1988) 81 ALR 397 at 401: I believe that it is appropriate to consider awarding \"solicitor and client\" or \"indemnity\" costs, whenever it appears that an action has been commenced or continued in circumstances where the applicant, properly advised, should have known that he had no chance of success. In such cases the action must be presumed to have been commenced or continued for some ulterior motive, or because of some wilful disregard of the known facts or the clearly established law. Such cases are, fortunately, rare. But when they occur, the court will need to consider how it should exercise its unfettered discretion.",
+          "start_char": 0,
+          "end_char": 807,
+          "tokens": 172,
+          "doc_title": "Fountain Selected Meats (Sales) Pty Ltd v International Produce Merchants Pty Ltd (1988) 81 ALR 397",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "779997721a85907c",
+          "doc_id": "Case12373",
+          "text": "Costs can be awarded on an indemnity basis where it is warranted by the interests of justice. In many contempt cases, the court has concluded that justice requires that the respondent pay the applicant's costs on an indemnity basis: Degmam Pty Ltd (in liq) v Wright (No 2) [1983] 2 NSWLR 354 at 358; and ACCC v INFO4PC at 58 [160]-[162].",
+          "start_char": 0,
+          "end_char": 337,
+          "tokens": 79,
+          "doc_title": "Degmam Pty Ltd (in liq) v Wright (No 2) [1983] 2 NSWLR 354",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "72a878d6028d9791",
+          "doc_id": "Case15920",
+          "text": "Indemnity costs have been awarded on the basis of actions and/or defences maintained without a proper foundation. See, for example, Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383 and Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228.",
+          "start_char": 0,
+          "end_char": 249,
+          "tokens": 55,
+          "doc_title": "Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "1b0626cfdf373e08",
+          "doc_id": "Case15919",
+          "text": "Indemnity costs have been awarded on the basis of actions and/or defences maintained without a proper foundation. See, for example, Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383 and Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228.",
+          "start_char": 0,
+          "end_char": 249,
+          "tokens": 55,
+          "doc_title": "Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "58d6ad5f84fd7d47",
+          "doc_id": "Case24185",
+          "text": "The rationale for an indemnity costs order can be variously stated. In Hamod v New South Wales (2002) 188 ALR 659 at [20], Gray J, with whom Carr and Goldberg JJ agreed, said: \"Indemnity costs are not designed to punish a party for persisting with a case that turns out to fail. They are not awarded as a means of deterring litigants from putting forward arguments that might be attended by uncertainty. Rather, they serve the purpose of compensating a party fully for costs incurred, as a normal costs order could not be expected to do, when the court takes the view that it was unreasonable for the party against whom the order is made to have subjected the innocent party to the expenditure of costs.\"",
+          "start_char": 0,
+          "end_char": 704,
+          "tokens": 163,
+          "doc_title": "Hamod v New South Wales (2002) 188 ALR 659",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "421d51fe0ddaa396",
+          "doc_id": "Case5909",
+          "text": "The principles applicable to an order for costs on an indemnity or solicitor/client basis are well-established. The starting point in considering an application for costs on these higher scales is that ordinarily costs are payable on a party/party basis. Section 43 of the Federal Court of Australia 1976 (Cth) confers upon the Court a wide discretion in relation to costs. Of course that discretion must be exercised judicially. Indemnity costs may properly be awarded where there is some special or unusual feature in the case justifying a departure from the ordinary rule: Re Wilcox; Ex parte Venture Industries Pty Ltd (No 2) (1996) 72 FCR 151.",
+          "start_char": 0,
+          "end_char": 648,
+          "tokens": 137,
+          "doc_title": "Re Wilcox; Ex parte Venture Industries Pty Ltd (No 2) (1996) 72 FCR 151",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        }
+      ],
+      "scores": [
+        0.6137744188308716,
+        0.6137744188308716,
+        0.6081846356391907,
+        0.6064848899841309,
+        0.6058398485183716,
+        0.6058398485183716,
+        0.6048600673675537,
+        0.5893305540084839
+      ],
+      "rationale": "Sub-query 1 from decomposition",
+      "metadata": {}
+    },
+    {
+      "step_num": 2,
+      "query": "What are the general principles that govern the awarding of indemnity costs?",
+      "num_chunks": 8,
+      "chunks": [
+        {
+          "chunk_id": "aea9ce43a8abcf8f",
+          "doc_id": "Case10911",
+          "text": "Principles applicable to the award of indemnity costs have been considered on numerous occasions in this Court, including by the Full Court. As observed by the Full Court in De Alwis v Minister for Immigration and Multicultural and Indigenous Affairs [2004] FCAFC 77: [6] The purpose of an order for costs is to indemnify or compensate the person in whose favour it is made, not to punish the person against whom it is made: see Latoudis v Casey [1990] HCA 59 ; (1990) 170 CLR 534 ; Ohn v Waltob (1995) 36 NSWLR 77 at 79 per Gleeson CJ. The usual rule is that costs should be on a party-party basis, but that the Court has a wide and unfettered discretion to award costs on an indemnity basis in appropriate cases in particular circumstances: see Colgate-Palmolive v Cussons (1993) 46 FCR 225 at 231-234. [7] In deciding whether to award indemnity costs each exercise of discretion depends on the particular facts. Indemnity costs can be awarded where it appears that a proceeding is commenced or continued in circumstances where the applicant properly advised should have known there was no chance of success...",
+          "start_char": 0,
+          "end_char": 1112,
+          "tokens": 249,
+          "doc_title": "Ohn v Waltob (1995) 36 NSWLR 77",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "d01b64e6ef853017",
+          "doc_id": "Case10910",
+          "text": "Principles applicable to the award of indemnity costs have been considered on numerous occasions in this Court, including by the Full Court. As observed by the Full Court in De Alwis v Minister for Immigration and Multicultural and Indigenous Affairs [2004] FCAFC 77: [6] The purpose of an order for costs is to indemnify or compensate the person in whose favour it is made, not to punish the person against whom it is made: see Latoudis v Casey [1990] HCA 59 ; (1990) 170 CLR 534 ; Ohn v Waltob (1995) 36 NSWLR 77 at 79 per Gleeson CJ. The usual rule is that costs should be on a party-party basis, but that the Court has a wide and unfettered discretion to award costs on an indemnity basis in appropriate cases in particular circumstances: see Colgate-Palmolive v Cussons (1993) 46 FCR 225 at 231-234. [7] In deciding whether to award indemnity costs each exercise of discretion depends on the particular facts. Indemnity costs can be awarded where it appears that a proceeding is commenced or continued in circumstances where the applicant properly advised should have known there was no chance of success...",
+          "start_char": 0,
+          "end_char": 1112,
+          "tokens": 249,
+          "doc_title": "Latoudis v Casey [1990] HCA 59",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "b957a268da5db921",
+          "doc_id": "Case10903",
+          "text": "Principles applicable to the award of indemnity costs have been considered on numerous occasions in this Court, including by the Full Court. As observed by the Full Court in De Alwis v Minister for Immigration and Multicultural and Indigenous Affairs [2004] FCAFC 77: [6] The purpose of an order for costs is to indemnify or compensate the person in whose favour it is made, not to punish the person against whom it is made: see Latoudis v Casey [1990] HCA 59 ; (1990) 170 CLR 534 ; Ohn v Waltob (1995) 36 NSWLR 77 at 79 per Gleeson CJ. The usual rule is that costs should be on a party-party basis, but that the Court has a wide and unfettered discretion to award costs on an indemnity basis in appropriate cases in particular circumstances: see Colgate-Palmolive v Cussons (1993) 46 FCR 225 at 231-234. [7] In deciding whether to award indemnity costs each exercise of discretion depends on the particular facts. Indemnity costs can be awarded where it appears that a proceeding is commenced or continued in circumstances where the applicant properly advised should have known there was no chance of success...",
+          "start_char": 0,
+          "end_char": 1112,
+          "tokens": 249,
+          "doc_title": "De Alwis v Minister for Immigration and Multicultural and Indigenous Affairs [2004] FCAFC 77",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "421d51fe0ddaa396",
+          "doc_id": "Case5909",
+          "text": "The principles applicable to an order for costs on an indemnity or solicitor/client basis are well-established. The starting point in considering an application for costs on these higher scales is that ordinarily costs are payable on a party/party basis. Section 43 of the Federal Court of Australia 1976 (Cth) confers upon the Court a wide discretion in relation to costs. Of course that discretion must be exercised judicially. Indemnity costs may properly be awarded where there is some special or unusual feature in the case justifying a departure from the ordinary rule: Re Wilcox; Ex parte Venture Industries Pty Ltd (No 2) (1996) 72 FCR 151.",
+          "start_char": 0,
+          "end_char": 648,
+          "tokens": 137,
+          "doc_title": "Re Wilcox; Ex parte Venture Industries Pty Ltd (No 2) (1996) 72 FCR 151",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "0295d5a7f473039e",
+          "doc_id": "Case13694",
+          "text": "The principles that govern the award of indemnity costs are well settled: Colgate-Palmolive Co v Cussons Pty Ltd (1993) 46 FCR 225. Such an order may be appropriate where it appears that the action was commenced or continued in circumstances where the applicant, properly advised, would have known that there was no chance of success. In such a case, an ulterior motive may be presumed. It is also within the discretion of a judge to depart from the ordinary rule of party and party costs where, for example, allegations of fraud have been made that are not sustained or where the conduct of the litigation has been such as to warrant a strong expression of disapproval. 18 In my view, there is no justification in this case for departing from the usual rule that costs be paid on a party and party basis. I accept the applicant's submissions in that regard. The doctrine of res judicata loomed large throughout and the applicant's decision to abandon issue estoppel did not bring about any delay or cause any party to incur additional expenditure. The res judicata point was certainly not hopeless.",
+          "start_char": 0,
+          "end_char": 1099,
+          "tokens": 245,
+          "doc_title": "Colgate-Palmolive Co v Cussons Pty Ltd (1993) 46 FCR 225",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "72a878d6028d9791",
+          "doc_id": "Case15920",
+          "text": "Indemnity costs have been awarded on the basis of actions and/or defences maintained without a proper foundation. See, for example, Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383 and Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228.",
+          "start_char": 0,
+          "end_char": 249,
+          "tokens": 55,
+          "doc_title": "Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "1b0626cfdf373e08",
+          "doc_id": "Case15919",
+          "text": "Indemnity costs have been awarded on the basis of actions and/or defences maintained without a proper foundation. See, for example, Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383 and Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228.",
+          "start_char": 0,
+          "end_char": 249,
+          "tokens": 55,
+          "doc_title": "Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "c6a944560d2a2911",
+          "doc_id": "Case19682",
+          "text": "Given the above facts, the Court considers that it should depart from the usual rule relating to the award of costs. It is just for AIA to receive costs on an indemnity basis in respect of the issues which the Court is satisfied were raised without any factual basis and those which were pursued falsely to the knowledge of the applicants. Since these matters largely occupied hearing time from 11 September 2007, in accordance with the principles in Re Wilcox; Ex parte Venture Industries Pty Ltd and Others (No 2) (1996) 72 FCR 151 at 156-158 and Amadio Pty Ltd and Another v Henderson and Others (1998) 81 FCR 149 at 258-259, the Court will order the applicants to pay indemnity costs to AIA from that date.",
+          "start_char": 0,
+          "end_char": 710,
+          "tokens": 165,
+          "doc_title": "Amadio Pty Ltd and Another v Henderson and Others (1998) 81 FCR 149",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        }
+      ],
+      "scores": [
+        0.6045058369636536,
+        0.6045058369636536,
+        0.6045058369636536,
+        0.5934327840805054,
+        0.5933300852775574,
+        0.5737967491149902,
+        0.5737967491149902,
+        0.5704938769340515
+      ],
+      "rationale": "Sub-query 2 from decomposition",
+      "metadata": {}
+    },
+    {
+      "step_num": 3,
+      "query": "Under what circumstances can indemnity costs be awarded instead of standard costs?",
+      "num_chunks": 8,
+      "chunks": [
+        {
+          "chunk_id": "e1a45553c5e90827",
+          "doc_id": "Case24054",
+          "text": "I have considered this issue, but take the view that an order for indemnity costs is inappropriate in these circumstances. As a general proposition, indemnity costs are awarded to an innocent party where, inter alia , the circumstances of the case are such as to warrant the Court in departing from the usual course. There should be some special or unusual feature in the case to justify the Court in departing from the ordinary practice (cf Colgate-Palmolive Company v Cussons Pty Limited (1993) 46 FCR 225 at 233). An example of an award of indemnity costs against a party to proceedings in circumstances involving the adjournment of a trial was David Charles Robinson v Aware Industries Ltd (unreported, Weinberg J, 1 October 1998) where the reason for the vacation of the trial dates was the complete failure of the applicant in that case to prosecute his application including multiple failures to comply with directions of the Court.",
+          "start_char": 0,
+          "end_char": 939,
+          "tokens": 204,
+          "doc_title": "David Charles Robinson v Aware Industries Ltd (unreported, Weinberg J, 1 October 1998)",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "d0880d3a245244a4",
+          "doc_id": "Case24053",
+          "text": "I have considered this issue, but take the view that an order for indemnity costs is inappropriate in these circumstances. As a general proposition, indemnity costs are awarded to an innocent party where, inter alia , the circumstances of the case are such as to warrant the Court in departing from the usual course. There should be some special or unusual feature in the case to justify the Court in departing from the ordinary practice (cf Colgate-Palmolive Company v Cussons Pty Limited (1993) 46 FCR 225 at 233). An example of an award of indemnity costs against a party to proceedings in circumstances involving the adjournment of a trial was David Charles Robinson v Aware Industries Ltd (unreported, Weinberg J, 1 October 1998) where the reason for the vacation of the trial dates was the complete failure of the applicant in that case to prosecute his application including multiple failures to comply with directions of the Court.",
+          "start_char": 0,
+          "end_char": 939,
+          "tokens": 204,
+          "doc_title": "Colgate-Palmolive Company v Cussons Pty Limited (1993) 46 FCR 225",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "58d6ad5f84fd7d47",
+          "doc_id": "Case24185",
+          "text": "The rationale for an indemnity costs order can be variously stated. In Hamod v New South Wales (2002) 188 ALR 659 at [20], Gray J, with whom Carr and Goldberg JJ agreed, said: \"Indemnity costs are not designed to punish a party for persisting with a case that turns out to fail. They are not awarded as a means of deterring litigants from putting forward arguments that might be attended by uncertainty. Rather, they serve the purpose of compensating a party fully for costs incurred, as a normal costs order could not be expected to do, when the court takes the view that it was unreasonable for the party against whom the order is made to have subjected the innocent party to the expenditure of costs.\"",
+          "start_char": 0,
+          "end_char": 704,
+          "tokens": 163,
+          "doc_title": "Hamod v New South Wales (2002) 188 ALR 659",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "38934f0f3146e8e6",
+          "doc_id": "Case16339",
+          "text": "has also been long established that in an appropriate case indemnity costs may be awarded against an unsuccessful party where it is established that a proceeding has been commenced in circumstances where the applicant properly advised by legal advisers should have known that it had no prospects of success: Fountain Selected Meats (Sales) Pty Ltd v International Produce Merchants Pty Ltd [1988] FCA 202 ; (1988) 81 ALR 397 at 401. In J-Corp Pty Ltd v Australian Builders Labourers Federated Union of Workers, Western Australian Branch (No 2) (1993) 46 IR 301, French J said at 303: \"It is sufficient, in my opinion, to enliven the discretion to award such [indemnity] costs that, for whatever reason, a party persists in what should on proper consideration be seen to be a hopeless case.\"",
+          "start_char": 0,
+          "end_char": 790,
+          "tokens": 171,
+          "doc_title": "J-Corp Pty Ltd v Australian Builders Labourers Federated Union of Workers, Western Australian Branch (No 2) (1993) 46 IR 301",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "f31aff0928083aa8",
+          "doc_id": "Case16338",
+          "text": "has also been long established that in an appropriate case indemnity costs may be awarded against an unsuccessful party where it is established that a proceeding has been commenced in circumstances where the applicant properly advised by legal advisers should have known that it had no prospects of success: Fountain Selected Meats (Sales) Pty Ltd v International Produce Merchants Pty Ltd [1988] FCA 202 ; (1988) 81 ALR 397 at 401. In J-Corp Pty Ltd v Australian Builders Labourers Federated Union of Workers, Western Australian Branch (No 2) (1993) 46 IR 301, French J said at 303: \"It is sufficient, in my opinion, to enliven the discretion to award such [indemnity] costs that, for whatever reason, a party persists in what should on proper consideration be seen to be a hopeless case.\"",
+          "start_char": 0,
+          "end_char": 790,
+          "tokens": 171,
+          "doc_title": "Fountain Selected Meats (Sales) Pty Ltd v International Produce Merchants Pty Ltd [1988] FCA 202 ; (1988) 81 ALR 397",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "72a878d6028d9791",
+          "doc_id": "Case15920",
+          "text": "Indemnity costs have been awarded on the basis of actions and/or defences maintained without a proper foundation. See, for example, Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383 and Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228.",
+          "start_char": 0,
+          "end_char": 249,
+          "tokens": 55,
+          "doc_title": "Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "1b0626cfdf373e08",
+          "doc_id": "Case15919",
+          "text": "Indemnity costs have been awarded on the basis of actions and/or defences maintained without a proper foundation. See, for example, Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383 and Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228.",
+          "start_char": 0,
+          "end_char": 249,
+          "tokens": 55,
+          "doc_title": "Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "779997721a85907c",
+          "doc_id": "Case12373",
+          "text": "Costs can be awarded on an indemnity basis where it is warranted by the interests of justice. In many contempt cases, the court has concluded that justice requires that the respondent pay the applicant's costs on an indemnity basis: Degmam Pty Ltd (in liq) v Wright (No 2) [1983] 2 NSWLR 354 at 358; and ACCC v INFO4PC at 58 [160]-[162].",
+          "start_char": 0,
+          "end_char": 337,
+          "tokens": 79,
+          "doc_title": "Degmam Pty Ltd (in liq) v Wright (No 2) [1983] 2 NSWLR 354",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        }
+      ],
+      "scores": [
+        0.6225172281265259,
+        0.6225172281265259,
+        0.6183372735977173,
+        0.6157128810882568,
+        0.6157128810882568,
+        0.612343430519104,
+        0.612343430519104,
+        0.6083239316940308
+      ],
+      "rationale": "Sub-query 3 from decomposition",
+      "metadata": {}
+    },
+    {
+      "step_num": 4,
+      "query": "What factors do courts consider when deciding to award indemnity costs?",
+      "num_chunks": 8,
+      "chunks": [
+        {
+          "chunk_id": "e2dd71add3eab76a",
+          "doc_id": "Case23070",
+          "text": "Under s 43(2) of the Federal Court Act 1976 (Cth), the Court has a discretion as to costs orders. As a general principle, costs are awarded on a party-party basis unless there are special or unusual circumstances. Some of the broad classes of circumstances in which the exercise of discretion to award indemnity costs may be appropriate are set out in the judgment of Sheppard J in Colgate-Palmolive Company v Cussons Pty Ltd (1993) 46 FCR 225 at 233-234. These include the undue prolongation of a case by groundless contentions, an imprudent refusal of an offer of compromise and the making of allegations which ought never to have been made. Another relevant consideration for the award of indemnity costs is where the applicant, properly advised, should have known that he or she had no chance of success: see Fountain Selected Meals (Sales) Pty Ltd v International Produce Merchants Pty Ltd (1988) 81 ALR 397 at 401.",
+          "start_char": 0,
+          "end_char": 920,
+          "tokens": 202,
+          "doc_title": "Fountain Selected Meals (Sales) Pty Ltd v International Produce Merchants Pty Ltd (1988) 81 ALR 397",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "45b72c4b7d6a8bba",
+          "doc_id": "Case23068",
+          "text": "Under s 43(2) of the Federal Court Act 1976 (Cth), the Court has a discretion as to costs orders. As a general principle, costs are awarded on a party-party basis unless there are special or unusual circumstances. Some of the broad classes of circumstances in which the exercise of discretion to award indemnity costs may be appropriate are set out in the judgment of Sheppard J in Colgate-Palmolive Company v Cussons Pty Ltd (1993) 46 FCR 225 at 233-234. These include the undue prolongation of a case by groundless contentions, an imprudent refusal of an offer of compromise and the making of allegations which ought never to have been made. Another relevant consideration for the award of indemnity costs is where the applicant, properly advised, should have known that he or she had no chance of success: see Fountain Selected Meals (Sales) Pty Ltd v International Produce Merchants Pty Ltd (1988) 81 ALR 397 at 401.",
+          "start_char": 0,
+          "end_char": 920,
+          "tokens": 202,
+          "doc_title": "Colgate-Palmolive Company v Cussons Pty Ltd (1993) 46 FCR 225",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "72a878d6028d9791",
+          "doc_id": "Case15920",
+          "text": "Indemnity costs have been awarded on the basis of actions and/or defences maintained without a proper foundation. See, for example, Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383 and Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228.",
+          "start_char": 0,
+          "end_char": 249,
+          "tokens": 55,
+          "doc_title": "Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "1b0626cfdf373e08",
+          "doc_id": "Case15919",
+          "text": "Indemnity costs have been awarded on the basis of actions and/or defences maintained without a proper foundation. See, for example, Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383 and Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228.",
+          "start_char": 0,
+          "end_char": 249,
+          "tokens": 55,
+          "doc_title": "Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "833a615be338d70d",
+          "doc_id": "Case19717",
+          "text": "The circumstances in which indemnity costs may properly be awarded were further discussed by Sheppard J in Colgate-Palmolive Company v Cussons Pty Limited (1993) 46 FCR 225 at 232 234. The passage is well-known, and I will not set it out in these reasons for judgment. It is sufficient simply to observe that his Honour recognised that the ordinary rule is that, where the Court orders the costs of one party to be paid by another, those costs will be assessed on a party and party basis. However, there may be factors that warrant the Court in departing from the usual course. His Honour then identified some of those factors. 6 The examples which his Honour gave are illuminating. They include making allegations of fraud knowing them to be false, evidence of particular misconduct that causes loss of time to the Court and to other parties, the fact that the proceedings were commenced or continued for some ulterior motive or in wilful disregard of known facts or clearly established law, and an imprudent refusal of an offer to compromise. 7 Importantly for present purposes, his Honour also identified as a basis for the award of indemnity costs the making of allegations which ought never to have been made, or the undue prolongation of a case by groundless contentions.",
+          "start_char": 0,
+          "end_char": 1277,
+          "tokens": 283,
+          "doc_title": "Colgate-Palmolive Company v Cussons Pty Limited (1993) 46 FCR 225",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "c23f4a108409cc86",
+          "doc_id": "Case19691",
+          "text": "Given the above facts, the Court considers that it should depart from the usual rule relating to the award of costs. It is just for AIA to receive costs on an indemnity basis in respect of the issues which the Court is satisfied were raised without any factual basis and those which were pursued falsely to the knowledge of the applicants. Since these matters largely occupied hearing time from 11 September 2007, in accordance with the principles in Re Wilcox; Ex parte Venture Industries Pty Ltd and Others (No 2) (1996) 72 FCR 151 at 156-158 and Amadio Pty Ltd and Another v Henderson and Others (1998) 81 FCR 149 at 258-259, the Court will order the applicants to pay indemnity costs to AIA from that date.",
+          "start_char": 0,
+          "end_char": 710,
+          "tokens": 165,
+          "doc_title": "Re Wilcox; Ex parte Venture Industries Pty Ltd and Others (No 2) (1996) 72 FCR 151",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "c6a944560d2a2911",
+          "doc_id": "Case19682",
+          "text": "Given the above facts, the Court considers that it should depart from the usual rule relating to the award of costs. It is just for AIA to receive costs on an indemnity basis in respect of the issues which the Court is satisfied were raised without any factual basis and those which were pursued falsely to the knowledge of the applicants. Since these matters largely occupied hearing time from 11 September 2007, in accordance with the principles in Re Wilcox; Ex parte Venture Industries Pty Ltd and Others (No 2) (1996) 72 FCR 151 at 156-158 and Amadio Pty Ltd and Another v Henderson and Others (1998) 81 FCR 149 at 258-259, the Court will order the applicants to pay indemnity costs to AIA from that date.",
+          "start_char": 0,
+          "end_char": 710,
+          "tokens": 165,
+          "doc_title": "Amadio Pty Ltd and Another v Henderson and Others (1998) 81 FCR 149",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "779997721a85907c",
+          "doc_id": "Case12373",
+          "text": "Costs can be awarded on an indemnity basis where it is warranted by the interests of justice. In many contempt cases, the court has concluded that justice requires that the respondent pay the applicant's costs on an indemnity basis: Degmam Pty Ltd (in liq) v Wright (No 2) [1983] 2 NSWLR 354 at 358; and ACCC v INFO4PC at 58 [160]-[162].",
+          "start_char": 0,
+          "end_char": 337,
+          "tokens": 79,
+          "doc_title": "Degmam Pty Ltd (in liq) v Wright (No 2) [1983] 2 NSWLR 354",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        }
+      ],
+      "scores": [
+        0.7157219648361206,
+        0.7157219648361206,
+        0.695907711982727,
+        0.695907711982727,
+        0.6950622797012329,
+        0.6918352246284485,
+        0.6918352246284485,
+        0.6893531084060669
+      ],
+      "rationale": "Sub-query 4 from decomposition",
+      "metadata": {}
+    },
+    {
+      "step_num": 5,
+      "query": "Are there specific rules or guidelines that outline the process for claiming indemnity costs?",
+      "num_chunks": 8,
+      "chunks": [
+        {
+          "chunk_id": "403f65c8665c8979",
+          "doc_id": "Case16456",
+          "text": "The Administrators have made helpful written submissions in support of their application for indemnity costs. There is no dispute in relation to the governing principles. The categories of case in which the discretion to award costs on the indemnity basis may be properly exercised are not closed, and an order is not compelled by the mere fact that the circumstances fit within a literal description that has been given of the features of an earlier case in which indemnity costs were ordered: NMFM Property Pty Ltd v Citibank Ltd (No 2) [2001] FCA 480 ; (2000) 109 FCR 77 at 92 [53] .",
+          "start_char": 0,
+          "end_char": 586,
+          "tokens": 133,
+          "doc_title": "NMFM Property Pty Ltd v Citibank Ltd (No 2) [2001] FCA 480 ; (2000) 109 FCR 77",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "476f3d1309617af2",
+          "doc_id": "Case12621",
+          "text": "My attention has been drawn by counsel for both parties to well-known authorities dealing with indemnity costs, including NMFM Property v Citibank Ltd [2001] FCA 480 ; (2001) 109 FCR 77, Colgate Palmolive Company v Cussons Pty Ltd (1993) 46 FCR 225 and Fountain Selected Meats (Sales) Pty Ltd v International Produce Merchants Pty Ltd (1988) 81 ALR 397. The Court has a discretion concerning the scale of costs. The discretion is unfettered except that it must be exercised judicially. The cases concerning indemnity costs illustrate that much turns upon the facts of the particular case. The essential principle is that a discretion can be exercised to order costs on an indemnity basis where the actions of the unsuccessful party have been unreasonable or high-handed or where the claim in question was totally frivolous or hopeless or fundamentally flawed.",
+          "start_char": 0,
+          "end_char": 859,
+          "tokens": 180,
+          "doc_title": "Fountain Selected Meats (Sales) Pty Ltd v International Produce Merchants Pty Ltd (1988) 81 ALR 397",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "023df2896627169b",
+          "doc_id": "Case12620",
+          "text": "My attention has been drawn by counsel for both parties to well-known authorities dealing with indemnity costs, including NMFM Property v Citibank Ltd [2001] FCA 480 ; (2001) 109 FCR 77, Colgate Palmolive Company v Cussons Pty Ltd (1993) 46 FCR 225 and Fountain Selected Meats (Sales) Pty Ltd v International Produce Merchants Pty Ltd (1988) 81 ALR 397. The Court has a discretion concerning the scale of costs. The discretion is unfettered except that it must be exercised judicially. The cases concerning indemnity costs illustrate that much turns upon the facts of the particular case. The essential principle is that a discretion can be exercised to order costs on an indemnity basis where the actions of the unsuccessful party have been unreasonable or high-handed or where the claim in question was totally frivolous or hopeless or fundamentally flawed.",
+          "start_char": 0,
+          "end_char": 859,
+          "tokens": 180,
+          "doc_title": "Colgate Palmolive Company v Cussons Pty Ltd (1993) 46 FCR 225",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "886c83282321fcec",
+          "doc_id": "Case12619",
+          "text": "My attention has been drawn by counsel for both parties to well-known authorities dealing with indemnity costs, including NMFM Property v Citibank Ltd [2001] FCA 480 ; (2001) 109 FCR 77, Colgate Palmolive Company v Cussons Pty Ltd (1993) 46 FCR 225 and Fountain Selected Meats (Sales) Pty Ltd v International Produce Merchants Pty Ltd (1988) 81 ALR 397. The Court has a discretion concerning the scale of costs. The discretion is unfettered except that it must be exercised judicially. The cases concerning indemnity costs illustrate that much turns upon the facts of the particular case. The essential principle is that a discretion can be exercised to order costs on an indemnity basis where the actions of the unsuccessful party have been unreasonable or high-handed or where the claim in question was totally frivolous or hopeless or fundamentally flawed.",
+          "start_char": 0,
+          "end_char": 859,
+          "tokens": 180,
+          "doc_title": "NMFM Property v Citibank Ltd [2001] FCA 480 ; (2001) 109 FCR 77",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "72a878d6028d9791",
+          "doc_id": "Case15920",
+          "text": "Indemnity costs have been awarded on the basis of actions and/or defences maintained without a proper foundation. See, for example, Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383 and Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228.",
+          "start_char": 0,
+          "end_char": 249,
+          "tokens": 55,
+          "doc_title": "Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "1b0626cfdf373e08",
+          "doc_id": "Case15919",
+          "text": "Indemnity costs have been awarded on the basis of actions and/or defences maintained without a proper foundation. See, for example, Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383 and Ogawa v Spender [2006] FCAFC 68 ; (2006) 151 FCR 228.",
+          "start_char": 0,
+          "end_char": 249,
+          "tokens": 55,
+          "doc_title": "Davids Holdings Pty Ltd v Coles Myer Ltd (1995) ATPR 41-383",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "c23f4a108409cc86",
+          "doc_id": "Case19691",
+          "text": "Given the above facts, the Court considers that it should depart from the usual rule relating to the award of costs. It is just for AIA to receive costs on an indemnity basis in respect of the issues which the Court is satisfied were raised without any factual basis and those which were pursued falsely to the knowledge of the applicants. Since these matters largely occupied hearing time from 11 September 2007, in accordance with the principles in Re Wilcox; Ex parte Venture Industries Pty Ltd and Others (No 2) (1996) 72 FCR 151 at 156-158 and Amadio Pty Ltd and Another v Henderson and Others (1998) 81 FCR 149 at 258-259, the Court will order the applicants to pay indemnity costs to AIA from that date.",
+          "start_char": 0,
+          "end_char": 710,
+          "tokens": 165,
+          "doc_title": "Re Wilcox; Ex parte Venture Industries Pty Ltd and Others (No 2) (1996) 72 FCR 151",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        },
+        {
+          "chunk_id": "c6a944560d2a2911",
+          "doc_id": "Case19682",
+          "text": "Given the above facts, the Court considers that it should depart from the usual rule relating to the award of costs. It is just for AIA to receive costs on an indemnity basis in respect of the issues which the Court is satisfied were raised without any factual basis and those which were pursued falsely to the knowledge of the applicants. Since these matters largely occupied hearing time from 11 September 2007, in accordance with the principles in Re Wilcox; Ex parte Venture Industries Pty Ltd and Others (No 2) (1996) 72 FCR 151 at 156-158 and Amadio Pty Ltd and Another v Henderson and Others (1998) 81 FCR 149 at 258-259, the Court will order the applicants to pay indemnity costs to AIA from that date.",
+          "start_char": 0,
+          "end_char": 710,
+          "tokens": 165,
+          "doc_title": "Amadio Pty Ltd and Another v Henderson and Others (1998) 81 FCR 149",
+          "doc_url": null,
+          "section": null,
+          "metadata": {
+            "doc_sections": [],
+            "doc_timestamp": null
+          }
+        }
+      ],
+      "scores": [
+        0.5582524538040161,
+        0.5569710731506348,
+        0.5569710731506348,
+        0.5569710731506348,
+        0.5505110025405884,
+        0.5505110025405884,
+        0.5342198014259338,
+        0.5342198014259338
+      ],
+      "rationale": "Sub-query 5 from decomposition",
+      "metadata": {}
+    }
+  ],
+  "executed_queries": [
+    "What are indemnity costs in the context of legal proceedings?",
+    "What are the general principles that govern the awarding of indemnity costs?",
+    "Under what circumstances can indemnity costs be awarded instead of standard costs?",
+    "What factors do courts consider when deciding to award indemnity costs?",
+    "Are there specific rules or guidelines that outline the process for claiming indemnity costs?"
+  ],
+  "viewed_chunk_ids": [
+    "c6a944560d2a2911",
+    "e2dd71add3eab76a",
+    "58d6ad5f84fd7d47",
+    "421d51fe0ddaa396",
+    "c23f4a108409cc86",
+    "b957a268da5db921",
+    "403f65c8665c8979",
+    "d01b64e6ef853017",
+    "38934f0f3146e8e6",
+    "886c83282321fcec",
+    "833a615be338d70d",
+    "72a878d6028d9791",
+    "d0880d3a245244a4",
+    "aea9ce43a8abcf8f",
+    "45b72c4b7d6a8bba",
+    "1b0626cfdf373e08",
+    "476f3d1309617af2",
+    "e1a45553c5e90827",
+    "f31aff0928083aa8",
+    "62b0aa099668bc13",
+    "023df2896627169b",
+    "779997721a85907c",
+    "0295d5a7f473039e"
+  ],
+  "answered_aspects": [],
+  "gaps": [],
+  "contradictions": [],
+  "is_sufficient": true,
+  "total_chunks_retrieved": 40,
+  "total_tokens_used": 0
+}

@@ -49,12 +49,12 @@ Determine if:
 4. No significant gaps remain
 
 Output format (JSON):
-{
+{{
   "is_sufficient": true/false,
   "confidence": 0.0-1.0,
   "reasoning": "Explanation of the decision",
   "missing_aspects": ["aspect1", ...] (if not sufficient)
-}"""
+}}"""
 
 REFINEMENT_PROMPT = """You are refining a search query based on previous results.
 

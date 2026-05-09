@@ -8,9 +8,12 @@ import json
 import os
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # ===================== إعدادات =====================
-TELEGRAM_TOKEN = "8782592595:AAFaIUgDDzsOGwuMWDgYU_esP_n1QLTNaKA"
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 INDEX_DIR = "data/index_trained"
 MAX_STEPS = 6
 K = 8

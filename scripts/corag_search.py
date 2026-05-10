@@ -14,5 +14,5 @@ subprocess.run([
     '--output', 'trace.json'
 ])
 
-print("Search complete ✅")
+print("Search complete ")
 print("Trace saved to trace.json")

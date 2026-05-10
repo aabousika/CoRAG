@@ -19,5 +19,5 @@ with open('data/legal_text_classification.csv', 'r') as csv_file, open('data/cor
         }
         jsonl_file.write(json.dumps(doc) + '\n')
 
-print("Ingestion complete ✅")
+print("Ingestion complete ")
 print("Saved to data/corpus.jsonl")

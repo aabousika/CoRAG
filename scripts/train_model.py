@@ -11,20 +11,20 @@ import csv
 from sentence_transformers import SentenceTransformer, InputExample, losses
 from torch.utils.data import DataLoader
 
-# ===================== إعدادات التدريب =====================
+# tranining settings
 TRAIN_EXAMPLES = 500
 BATCH_SIZE = 8
 EPOCHS = 3
-WARMUP_STEPS = 50
+WARMUP_STEPS = 50 #النموذج سيقوم بـ رفع معدل التعلّم (learning rate) تدريجياً خلال أول 50 خطوة تدريب بدل أن يبدأ بقيمة عالية مباشرة.
 MODEL_INPUT = 'sentence-transformers/msmarco-distilbert-base-v4'
 MODEL_OUTPUT = 'models/legal-corag'
 DATA_FILE = 'data/train_data.json'
 CSV_FILE = 'data/legal_text_classification.csv'
 
-# ===================== الخطوة 1 — تجهيز الداتا =====================
+# Step 1 — Data Preparation
 def prepare_data():
     print("=" * 50)
-    print("الخطوة 1: تجهيز داتا التدريب...")
+    print("Step 1: Preparing training data...")
     print("=" * 50)
 
     csv.field_size_limit(10000000)
@@ -46,14 +46,14 @@ def prepare_data():
     with open(DATA_FILE, 'w') as f:
         json.dump(train_data, f, indent=2)
 
-    print(f"تم إنشاء {len(train_data)} مثال تدريب ✅")
+    print(f"{len(train_data)} training examples created ")
     return train_data
 
-# ===================== الخطوة 2 — التدريب =====================
+# Step 2 — Training
 def train_model(train_data):
     print()
     print("=" * 50)
-    print("الخطوة 2: تحميل النموذج وبدء التدريب...")
+    print("Step 2: Loading model and starting training...")
     print("=" * 50)
 
     model = SentenceTransformer(MODEL_INPUT)
@@ -67,10 +67,10 @@ def train_model(train_data):
     loader = DataLoader(examples, shuffle=True, batch_size=BATCH_SIZE)
     loss = losses.TripletLoss(model=model)
 
-    print(f"عدد الأمثلة:  {TRAIN_EXAMPLES}")
+    print(f"Number of examples:  {TRAIN_EXAMPLES}")
     print(f"Batch Size:   {BATCH_SIZE}")
     print(f"Epochs:       {EPOCHS}")
-    print(f"الوقت المتوقع: ~30 دقيقة")
+    print(f"Estimated time:     ~30 minutes")
     print()
 
     os.makedirs('models', exist_ok=True)
@@ -84,14 +84,14 @@ def train_model(train_data):
     )
 
     print()
-    print(f"تم التدريب ✅")
-    print(f"النموذج محفوظ في: {MODEL_OUTPUT}")
+    print(f"Training completed ")
+    print(f"Model saved at: {MODEL_OUTPUT}")
 
-# ===================== الخطوة 3 — بناء Index =====================
+# build index -step3
 def build_index():
     print()
     print("=" * 50)
-    print("الخطوة 3: بناء Index بالنموذج المدرَّب...")
+    print("Step 3: Building index with the trained model...")
     print("=" * 50)
 
     import subprocess
@@ -103,13 +103,13 @@ def build_index():
         '--chunk-overlap', '64'
     ], capture_output=False)
 
-    print("Index جاهز ✅ — محفوظ في data/index_trained")
+    print("Index ready  — saved in data/index_trained")
 
-# ===================== الخطوة 4 — التقييم =====================
+# evatuator - step4
 def evaluate():
     print()
     print("=" * 50)
-    print("الخطوة 4: تقييم النموذج المدرَّب...")
+    print("Step 4: Evaluating the trained model...")
     print("=" * 50)
 
     import time
@@ -120,7 +120,7 @@ def evaluate():
 
     results = []
     for i, q in enumerate(questions):
-        print(f'تقييم {i+1}/50: {q["question"][:50]}...')
+        print(f'Evaluation {i+1}/50: {q["question"][:50]}...')
         start = time.time()
         subprocess.run([
             'corag-search',
@@ -157,13 +157,13 @@ def evaluate():
 
     print()
     print("=" * 50)
-    print("النتائج النهائية")
+    print("Final Results")
     print("=" * 50)
-    print(f"النموذج القديم:    66.0%")
-    print(f"النموذج المدرَّب:  {hits/total*100:.1f}%")
-    print(f"التحسن:           +{hits/total*100 - 66.0:.1f}%")
-    print(f"متوسط الخطوات:    {avg_steps:.2f}")
-    print(f"متوسط الوقت:      {avg_latency:.2f}s")
+    print(f"Old model:        66.0%")
+    print(f"Trained model:    {hits/total*100:.1f}%")
+    print(f"Improvement:      +{hits/total*100 - 66.0:.1f}%")
+    print(f"Avg steps:        {avg_steps:.2f}")
+    print(f"Avg time:         {avg_latency:.2f}s")
     print("=" * 50)
 
     os.makedirs('reports', exist_ok=True)
@@ -180,12 +180,12 @@ def evaluate():
             'details': results
         }, f, indent=2, ensure_ascii=False)
 
-    print("تم الحفظ في reports/trained_eval.json ✅")
+    print("Saved in reports/trained_eval.json ")
 
-# ===================== التشغيل =====================
+# run
 if __name__ == '__main__':
     print()
-    print("🚀 بدء Fine-tuning النموذج على الداتا القانونية")
+    print(" Starting fine-tuning of the model on legal dataset")
     print("=" * 50)
 
     train_data = prepare_data()
@@ -194,4 +194,4 @@ if __name__ == '__main__':
     evaluate()
 
     print()
-    print("🎉 Fine-tuning اكتمل بنجاح!")
+    print(" Fine-tuning completed successfully!")

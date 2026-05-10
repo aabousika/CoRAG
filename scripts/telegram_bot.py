@@ -12,7 +12,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-# ===================== إعدادات =====================
+# settings
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 INDEX_DIR = "data/index_trained"
 MAX_STEPS = 6
@@ -23,59 +23,59 @@ logging.basicConfig(
     level=logging.INFO
 )
 
-# ===================== أوامر الـ Bot =====================
+# Bot Commands
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "⚖️ *CoRAG Legal Search Bot*\n\n"
-        "مرحباً! أنا نظام بحث قانوني ذكي.\n\n"
-        "أرسل سؤالك القانوني وسأجيبك مع المراجع!\n\n"
-        "مثال:\n"
+        "Hello! I am an intelligent legal search system.\n\n"
+        "Send your legal question and I will answer it with references!\n\n"
+        "Example:\n"
         "_What are the principles for awarding indemnity costs?_\n\n"
-        "الأوامر:\n"
-        "/start — بدء المحادثة\n"
-        "/help — المساعدة\n"
-        "/about — معلومات عن النظام",
-        parse_mode='Markdown'
+        "Commands:\n"
+        "/start — Start the conversation\n"
+        "/help — Help\n"
+        "/about — Information about the system",
+        parse_mode='Markdown'#يعني أن تيليجرام سيقوم بتنسيق النص باستخدام Markdown بدل عرضه كنص عادي.
     )
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "📚 *كيفية الاستخدام*\n\n"
-        "1. أرسل سؤالك القانوني بالإنجليزية\n"
-        "2. انتظر ~30 ثانية\n"
-        "3. ستصلك إجابة مفصّلة مع مراجع قانونية\n\n"
-        "⚠️ النظام متخصص في القانون الأسترالي فقط",
+        "📚 How to Use\n\n"
+        "1. Send your legal question in English\n"
+        "2. Wait about ~30 seconds\n"
+        "3. You will receive a detailed answer with legal references\n\n"
+        "⚠️ The system specializes in Australian law only",
         parse_mode='Markdown'
     )
 
 async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "🤖 *CoRAG — Adaptive Multi-Step Retrieval*\n\n"
-        "📊 *إحصائيات النظام:*\n"
-        "• Hit Rate: 90% بعد Fine-tuning\n"
-        "• F1 Score: 56.4% على HotpotQA\n"
+        "📊 System Statistics:\n"
+        "• Hit Rate: 90%. after Fine-tuning\n"
+        "• F1 Score: 56.4%. on HotpotQA\n"
         "• Exact Match: 34.0%\n"
-        "• 37,393 متجه قانوني\n\n"
-        "🛠 *التقنيات:*\n"
+        "• 37,393 legal vectors\n\n"
+        "🛠 Technologies:\n"
         "• FAISS + Sentence Transformers\n"
         "• GPT-4o-mini\n"
         "• FastAPI\n\n"
-        "👨‍💻 *إعداد:* Angel Abou Sika\n"
-        "🎓 *إشراف:* Dr. Tarek Barhom",
+        "👨‍💻 Developed by: Angel Abou Sika\n"
+        "🎓 Supervised by: Dr. Tarek Barhom",
         parse_mode='Markdown'
     )
 
 async def handle_question(update: Update, context: ContextTypes.DEFAULT_TYPE):
     question = update.message.text
 
-    # رسالة انتظار
+    # wait message
     waiting_msg = await update.message.reply_text(
-        "⏳ جاري البحث في قاعدة البيانات القانونية...\n"
-        "انتظر ~30 ثانية"
+        "⏳ Searching the legal database...\n"
+        "Please wait about ~30 seconds",
     )
 
     try:
-        # خطوة 1 — البحث
+        # search - step1
         search_result = subprocess.run([
             'corag-search',
             '--question', question,
@@ -85,58 +85,58 @@ async def handle_question(update: Update, context: ContextTypes.DEFAULT_TYPE):
             '--output', 'data/telegram_trace.json'
         ], capture_output=True, text=True, cwd='/Users/angel/Desktop/CoRAG')
 
-        # خطوة 2 — توليد الإجابة
+        # generate answer - step2
         answer_result = subprocess.run([
             'corag-answer',
             '--trace', 'data/telegram_trace.json',
             '--output', 'data/telegram_answer.md'
         ], capture_output=True, text=True, cwd='/Users/angel/Desktop/CoRAG')
 
-        # قراءة الإجابة
+        # read answer
         with open('/Users/angel/Desktop/CoRAG/data/telegram_answer.md', 'r') as f:
             answer = f.read()
 
-        # قراءة المراجع من الـ trace
+        # read reference from trace
         with open('/Users/angel/Desktop/CoRAG/data/telegram_trace.json', 'r') as f:
             trace = json.load(f)
 
-        # تقصير الإجابة لـ Telegram (حد 4096 حرف)
+        # Trimming the answer for Telegram (4096 character limit)
         if len(answer) > 3000:
             answer = answer[:3000] + "\n\n..."
 
-        # حذف رسالة الانتظار
+        # delet wait message
         await waiting_msg.delete()
 
-        # إرسال الإجابة
+        # send answer
         await update.message.reply_text(
-            f"⚖️ *الإجابة:*\n\n{answer}",
+            f"⚖️ *answer:*\n\n{answer}",
             parse_mode='Markdown'
         )
 
-        # إرسال الإحصائيات
+        # Sending statistics
         num_steps = len(trace.get('steps', []))
         num_chunks = trace.get('total_chunks_retrieved', 0)
         await update.message.reply_text(
-            f"📊 *إحصائيات البحث:*\n"
-            f"• خطوات البحث: {num_steps}\n"
-            f"• القطع المسترجعة: {num_chunks}\n"
-            f"• الـ Index: Legal (Fine-tuned)",
+            f"📊 *Search Statistics:*\n"
+            f"• Search steps: {num_steps}\n"
+            f"• Retrieved chunks: {num_chunks}\n"
+            f"• Index: Legal (Fine-tuned)",
             parse_mode='Markdown'
         )
 
     except Exception as e:
         await waiting_msg.delete()
         await update.message.reply_text(
-            "❌ حدث خطأ أثناء البحث\n"
-            "تأكد من أن السيرفر يعمل وأن السؤال بالإنجليزية"
+            "An error occurred during search\n"
+            "Make sure the server is running and the question is in English"
         )
         logging.error(f"Error: {e}")
 
-# ===================== تشغيل الـ Bot =====================
+# run bot
 def main():
-    print("🚀 CoRAG Telegram Bot يعمل...")
-    print("افتح Telegram وابحث عن @corag_legal_bot")
-    print("اضغط Ctrl+C لإيقاف الـ Bot")
+    print(" CoRAG Telegram Bot is running...")
+    print("Open Telegram and search for @corag_legal_bot")
+    print("Press Ctrl+C to stop the bot")
 
     app = Application.builder().token(TELEGRAM_TOKEN).build()
 

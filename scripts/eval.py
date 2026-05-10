@@ -13,7 +13,7 @@ MAX_STEPS = 6
 K = 8
 NUM_QUESTIONS = 50
 
-# بناء الأسئلة
+# build questions
 print(f"Building {NUM_QUESTIONS} evaluation questions...")
 questions = []
 with open('data/legal_text_classification.csv', 'r') as f:
@@ -29,7 +29,7 @@ with open('data/legal_text_classification.csv', 'r') as f:
             'expected_title': row['case_title']
         })
 
-# تشغيل التقييم
+# run evaluation
 print(f"Running evaluation: max_steps={MAX_STEPS}, k={K}")
 print("=" * 50)
 
@@ -64,8 +64,7 @@ for i, q in enumerate(questions):
         })
     except:
         results.append({'case_id': q['case_id'], 'hit': False, 'latency': round(latency,2), 'num_steps': 0})
-
-# النتائج
+#results
 hits = sum(1 for r in results if r['hit'])
 total = len(results)
 avg_latency = sum(r['latency'] for r in results) / total
@@ -94,4 +93,4 @@ with open('reports/legal_eval_final.json', 'w') as f:
         'details': results
     }, f, indent=2)
 
-print("Results saved to reports/legal_eval_final.json ✅")
+print("Results saved to reports/legal_eval_final.json ")

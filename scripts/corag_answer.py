@@ -9,5 +9,5 @@ subprocess.run([
     '--output', 'answer.md'
 ])
 
-print("Answer generated ✅")
+print("Answer generated ")
 print("Saved to answer.md")

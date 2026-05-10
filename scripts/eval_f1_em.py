@@ -13,13 +13,13 @@ from openai import OpenAI
 
 client = OpenAI()
 
-# ===================== إعدادات التقييم =====================
+# Evaluation Settings
 NUM_EXAMPLES = 50
 MAX_STEPS = 4
 K = 8
 INDEX_DIR = 'data/wiki_index_large'
 
-# ===================== دوال التقييم =====================
+# Evaluation function
 def normalize(text):
     text = text.lower().strip()
     text = ''.join(c for c in text if c not in string.punctuation)
@@ -53,20 +53,20 @@ def extract_short_answer(long_answer, question):
     )
     return response.choices[0].message.content.strip()
 
-# ===================== التقييم =====================
+# Evaluation 
 if __name__ == '__main__':
     print("=" * 50)
-    print("تقييم F1 وEM على HotpotQA")
+    print("F1 and EM Evaluation on HotpotQA")
     print("=" * 50)
 
-    print('تحميل HotpotQA...')
+    print('Loading HotpotQA..')
     ds = load_dataset('hotpot_qa', 'distractor', split=f'validation[:{NUM_EXAMPLES}]')
 
     results = []
     for i, item in enumerate(ds):
-        print(f'سؤال {i+1}/{NUM_EXAMPLES}: {item["question"][:50]}...')
+        print(f'question{i+1}/{NUM_EXAMPLES}: {item["question"][:50]}...')
 
-        # خطوة 1 — البحث
+        # search -step1
         subprocess.run([
             'corag-search',
             '--question', item['question'],
@@ -76,7 +76,7 @@ if __name__ == '__main__':
             '--output', f'data/hotpot_trace_{i}.json'
         ], capture_output=True, text=True)
 
-        # خطوة 2 — توليد الإجابة
+        # generat the answer -ste2
         subprocess.run([
             'corag-answer',
             '--trace', f'data/hotpot_trace_{i}.json',
@@ -84,7 +84,7 @@ if __name__ == '__main__':
         ], capture_output=True, text=True)
 
         try:
-            # خطوة 3 — استخراج الإجابة القصيرة
+            # Extracting the Short Answer -step3
             with open(f'data/hotpot_answer_{i}.md') as f:
                 long_answer = f.read()
 
@@ -104,16 +104,16 @@ if __name__ == '__main__':
                 'em': round(em*100, 1)
             })
         except Exception as e:
-            print(f'  خطأ: {e}')
+            print(f'  error: {e}')
             results.append({'question': item['question'], 'f1': 0, 'em': 0})
 
-    # ===================== النتائج =====================
+    # results
     avg_f1 = sum(r['f1'] for r in results) / len(results)
     avg_em = sum(r['em'] for r in results) / len(results)
 
     print()
     print('=' * 50)
-    print('النتائج النهائية')
+    print('final answers')
     print('=' * 50)
     print(f'Dataset:     HotpotQA (validation)')
     print(f'Examples:    {len(results)}')
@@ -136,4 +136,4 @@ if __name__ == '__main__':
             'details': results
         }, f, indent=2, ensure_ascii=False)
 
-    print('تم الحفظ في reports/hotpotqa_final.json ✅')
+    print(' save to reports/hotpotqa_final.json ')

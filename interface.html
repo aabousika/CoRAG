@@ -169,16 +169,7 @@
 
 <script>
 // ══ FIREBASE CONFIG ══
-const firebaseConfig = {
-  apiKey: "AIzaSyCXuu4Ch6305ZcYzW-pe2zMuQTWX9czmeY",
-  authDomain: "corag-legal.firebaseapp.com",
-  projectId: "corag-legal",
-  storageBucket: "corag-legal.firebasestorage.app",
-  messagingSenderId: "746202784098",
-  appId: "1:746202784098:web:cbe6dd2faaa688dafc0c3b"
-};
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
+
 
 // ══ AUTH STATE ══
 auth.onAuthStateChanged(user => {

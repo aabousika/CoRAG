@@ -186,3 +186,23 @@ def main(
 
 if __name__ == "__main__":
     main()
+
+import os
+from fastapi.responses import HTMLResponse
+
+@app.get("/", response_class=HTMLResponse)
+async def serve_interface():
+    with open("interface_template.html", "r") as f:
+        content = f.read()
+    
+    config = f'''{{
+        apiKey: "{os.getenv('FIREBASE_API_KEY')}",
+        authDomain: "{os.getenv('FIREBASE_AUTH_DOMAIN')}",
+        projectId: "{os.getenv('FIREBASE_PROJECT_ID')}",
+        storageBucket: "{os.getenv('FIREBASE_STORAGE_BUCKET')}",
+        messagingSenderId: "{os.getenv('FIREBASE_MESSAGING_SENDER_ID')}",
+        appId: "{os.getenv('FIREBASE_APP_ID')}"
+    }}'''
+    
+    content = content.replace('FIREBASE_CONFIG_PLACEHOLDER', config)
+    return content

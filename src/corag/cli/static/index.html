@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CoRAG Legal Search</title>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0a0e1a; color: #e0e0e0; min-height: 100vh; }
+
+  /* ── AUTH PAGE ── */
+  #auth-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  .auth-card { background: #1a1f3a; border: 1px solid #2a3050; border-radius: 20px; padding: 40px; width: 400px; text-align: center; }
+  .auth-card img { width: 90px; height: 90px; border-radius: 50%; margin-bottom: 16px; }
+  .auth-card h1 { font-size: 2em; background: linear-gradient(90deg, #00b4ff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; }
+  .auth-card p { color: #8892b0; margin-bottom: 28px; font-size: 14px; }
+  .tabs { display: flex; background: #0d1120; border-radius: 10px; padding: 4px; margin-bottom: 24px; }
+  .tab { flex: 1; padding: 10px; border: none; background: none; color: #8892b0; cursor: pointer; border-radius: 8px; font-size: 14px; font-weight: 600; transition: all .2s; }
+  .tab.active { background: linear-gradient(135deg, #00b4ff, #a855f7); color: white; }
+  .input-group { margin-bottom: 16px; text-align: left; }
+  .input-group label { font-size: 12px; color: #8892b0; margin-bottom: 6px; display: block; }
+  .input-group input { width: 100%; padding: 12px 16px; background: #0d1120; border: 1px solid #2a3050; border-radius: 10px; color: #e0e0e0; font-size: 14px; outline: none; transition: border .2s; }
+  .input-group input:focus { border-color: #00b4ff; }
+  .btn-primary { width: 100%; padding: 13px; background: linear-gradient(135deg, #00b4ff, #a855f7); border: none; border-radius: 10px; color: white; font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 14px; }
+  .btn-primary:hover { opacity: 0.9; }
+  .divider { display: flex; align-items: center; gap: 12px; margin: 16px 0; color: #4a5568; font-size: 13px; }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #2a3050; }
+  .btn-google { width: 100%; padding: 13px; background: white; border: none; border-radius: 10px; color: #333; font-size: 15px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .btn-google:hover { background: #f5f5f5; }
+  .btn-google img { width: 20px; height: 20px; }
+  .auth-error { background: #2d1515; border: 1px solid #ff4444; border-radius: 8px; padding: 10px; color: #ff8888; font-size: 13px; margin-bottom: 14px; display: none; }
+
+  /* ── MAIN APP ── */
+  #app-page { display: none; }
+  .header { background: linear-gradient(135deg, #0a0e1a 0%, #1a1f3a 100%); padding: 20px; text-align: center; border-bottom: 1px solid #2a3050; position: relative; }
+  .header img { width: 70px; height: 70px; border-radius: 50%; margin-bottom: 10px; }
+  .header h1 { font-size: 2em; background: linear-gradient(90deg, #00b4ff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .header p { color: #8892b0; font-size: 13px; }
+  .user-info { position: absolute; top: 20px; right: 20px; display: flex; align-items: center; gap: 10px; }
+  .user-avatar { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #00b4ff; }
+  .user-name { color: #e0e0e0; font-size: 13px; }
+  .btn-logout { padding: 7px 16px; background: transparent; border: 1px solid #ff4444; border-radius: 8px; color: #ff8888; font-size: 12px; cursor: pointer; }
+  .btn-logout:hover { background: #2d1515; }
+
+  .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+  .search-box { background: #1a1f3a; border-radius: 16px; padding: 25px; border: 1px solid #2a3050; }
+  textarea { width: 100%; background: #0d1120; color: #e0e0e0; border: 1px solid #2a3050; border-radius: 10px; padding: 15px; font-size: 15px; height: 100px; resize: none; outline: none; }
+  textarea:focus { border-color: #00b4ff; }
+  textarea::placeholder { color: #4a5568; }
+  .btn-row { display: flex; justify-content: flex-end; margin-top: 12px; }
+  .search-btn { padding: 10px 30px; background: linear-gradient(135deg, #00b4ff, #a855f7); color: white; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: bold; }
+  .search-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .loading { display: none; text-align: center; margin: 30px 0; }
+  .loading-dots span { display: inline-block; width: 10px; height: 10px; background: #00b4ff; border-radius: 50%; margin: 0 4px; animation: bounce 1.2s infinite; }
+  .loading-dots span:nth-child(2) { animation-delay: 0.2s; background: #a855f7; }
+  .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce { 0%,80%,100%{transform:scale(0)} 40%{transform:scale(1)} }
+  .loading p { color: #8892b0; margin-top: 10px; }
+
+  .result { display: none; margin-top: 30px; }
+  .stats { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  .stat { background: linear-gradient(135deg, #1a1f3a, #2a3050); padding: 8px 18px; border-radius: 20px; font-size: 13px; border: 1px solid #3a4060; }
+  .stat span { color: #00b4ff; font-weight: bold; }
+  .answer-card { background: #1a1f3a; border-radius: 16px; padding: 25px; border: 1px solid #2a3050; line-height: 1.9; }
+  .answer-card h3 { color: #00b4ff; margin: 20px 0 10px; }
+  .answer-card h4 { color: #a855f7; margin: 15px 0 8px; }
+  .refs { background: #0d1120; border-radius: 16px; padding: 20px; margin-top: 20px; border: 1px solid #2a3050; }
+  .refs h4 { color: #00b4ff; margin-bottom: 15px; }
+  .ref-item { font-size: 13px; color: #8892b0; padding: 6px 0; border-bottom: 1px solid #1a1f3a; }
+  .ref-num { color: #a855f7; font-weight: bold; margin-right: 8px; }
+  .error { background: #2d1515; border: 1px solid #ff4444; border-radius: 10px; padding: 15px; margin-top: 20px; color: #ff8888; display: none; }
+</style>
+</head>
+<body>
+
+<!-- ══ AUTH PAGE ══ -->
+<div id="auth-page">
+  <div class="auth-card">
+    <img src="data/CoRAG.png" alt="CoRAG">
+    <h1>CoRAG</h1>
+    <p>Legal Search — Sign in to continue</p>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('login')">Login</button>
+      <button class="tab" onclick="switchTab('register')">Register</button>
+    </div>
+
+    <div class="auth-error" id="auth-error"></div>
+
+    <!-- Login Form -->
+    <div id="login-form">
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="login-email" placeholder="your@email.com">
+      </div>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="••••••••">
+      </div>
+      <button class="btn-primary" onclick="loginEmail()">Login</button>
+      <div class="divider">or</div>
+      <button class="btn-google" onclick="loginGoogle()">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
+        Continue with Google
+      </button>
+    </div>
+
+    <!-- Register Form -->
+    <div id="register-form" style="display:none">
+      <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" id="reg-name" placeholder="Angel Abou Sika">
+      </div>
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="reg-email" placeholder="your@email.com">
+      </div>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="reg-password" placeholder="min 6 characters">
+      </div>
+      <button class="btn-primary" onclick="registerEmail()">Create Account</button>
+      <div class="divider">or</div>
+      <button class="btn-google" onclick="loginGoogle()">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
+        Continue with Google
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MAIN APP ══ -->
+<div id="app-page">
+  <div class="header">
+    <div class="user-info">
+      <img class="user-avatar" id="user-avatar" src="" onerror="this.src='data/CoRAG.png'">
+      <span class="user-name" id="user-name"></span>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+    <img src="data/CoRAG.png" alt="CoRAG Logo">
+    <h1>CoRAG</h1>
+    <p>Adaptive Multi-Step Retrieval for Legal Queries</p>
+  </div>
+
+  <div class="container">
+    <div class="search-box">
+      <textarea id="question" placeholder="Ask a legal question... e.g. What are the principles for awarding indemnity costs?"></textarea>
+      <div class="btn-row">
+        <button class="search-btn" onclick="ask()" id="btn">🔍 Search</button>
+      </div>
+    </div>
+
+    <div class="loading" id="loading">
+      <div class="loading-dots"><span></span><span></span><span></span></div>
+      <p>Searching legal database...</p>
+    </div>
+
+    <div class="error" id="error">⚠️ Could not connect to server. Make sure CoRAG server is running.</div>
+
+    <div class="result" id="result">
+      <div class="stats" id="stats"></div>
+      <div class="answer-card" id="answer-text"></div>
+      <div class="refs" id="refs"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══ FIREBASE CONFIG ══
+const firebaseConfig = {
+  apiKey: "AIzaSyCXuu4Ch6305ZcYzW-pe2zMuQTWX9czmeY",
+  authDomain: "corag-legal.firebaseapp.com",
+  projectId: "corag-legal",
+  storageBucket: "corag-legal.firebasestorage.app",
+  messagingSenderId: "746202784098",
+  appId: "1:746202784098:web:cbe6dd2faaa688dafc0c3b"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// ══ AUTH STATE ══
+auth.onAuthStateChanged(user => {
+  if (user) {
+    document.getElementById('auth-page').style.display = 'none';
+    document.getElementById('app-page').style.display = 'block';
+    document.getElementById('user-name').textContent = user.displayName || user.email;
+    if (user.photoURL) document.getElementById('user-avatar').src = user.photoURL;
+  } else {
+    document.getElementById('auth-page').style.display = 'flex';
+    document.getElementById('app-page').style.display = 'none';
+  }
+});
+
+// ══ TAB SWITCH ══
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('login-form').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('register-form').style.display = tab === 'register' ? 'block' : 'none';
+  hideError();
+}
+
+function showError(msg) {
+  const el = document.getElementById('auth-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function hideError() { document.getElementById('auth-error').style.display = 'none'; }
+
+// ══ LOGIN EMAIL ══
+async function loginEmail() {
+  const email = document.getElementById('login-email').value;
+  const pass = document.getElementById('login-password').value;
+  if (!email || !pass) return showError('Please fill all fields');
+  try {
+    await auth.signInWithEmailAndPassword(email, pass);
+  } catch(e) {
+    showError(e.message);
+  }
+}
+
+// ══ REGISTER EMAIL ══
+async function registerEmail() {
+  const name = document.getElementById('reg-name').value;
+  const email = document.getElementById('reg-email').value;
+  const pass = document.getElementById('reg-password').value;
+  if (!name || !email || !pass) return showError('Please fill all fields');
+  if (pass.length < 6) return showError('Password must be at least 6 characters');
+  try {
+    const result = await auth.createUserWithEmailAndPassword(email, pass);
+    await result.user.updateProfile({ displayName: name });
+  } catch(e) {
+    showError(e.message);
+  }
+}
+
+// ══ GOOGLE LOGIN ══
+async function loginGoogle() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  try {
+    await auth.signInWithPopup(provider);
+  } catch(e) {
+    showError(e.message);
+  }
+}
+
+// ══ LOGOUT ══
+async function logout() {
+  await auth.signOut();
+}
+
+// ══ SEARCH ══
+async function ask() {
+  const q = document.getElementById('question').value.trim();
+  if (!q) return alert('Please enter a question');
+  document.getElementById('btn').disabled = true;
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('error').style.display = 'none';
+  try {
+    const res = await fetch('http://127.0.0.1:8000/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question: q, max_steps: 6, k: 8 })
+    });
+    const data = await res.json();
+    document.getElementById('stats').innerHTML = `
+      <div class="stat">📌 Steps: <span>${data.num_steps}</span></div>
+      <div class="stat">📄 Chunks: <span>${data.num_chunks}</span></div>
+      <div class="stat">📚 References: <span>${data.citations.length}</span></div>`;
+    let html = data.answer
+      .replace(/### (.*)/g, '<h3>$1</h3>')
+      .replace(/#### (.*)/g, '<h4>$1</h4>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br>');
+    document.getElementById('answer-text').innerHTML = html;
+    let refs = '<h4>📚 References</h4>';
+    data.citations.forEach(c => { refs += `<div class="ref-item"><span class="ref-num">[${c.id}]</span>${c.title}</div>`; });
+    document.getElementById('refs').innerHTML = refs;
+    document.getElementById('result').style.display = 'block';
+  } catch(e) {
+    document.getElementById('error').style.display = 'block';
+  }
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('btn').disabled = false;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('question').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); ask(); }
+  });
+});
+</script>
+</body>
+</html>

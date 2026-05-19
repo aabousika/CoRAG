@@ -56,6 +56,40 @@ app = FastAPI(
     version="0.1.0",
 )
 
+
+import os
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from dotenv import load_dotenv
+load_dotenv()
+
+@app.get("/", response_class=HTMLResponse)
+async def serve_interface():
+    with open("interface.html", "r") as f:
+        html = f.read()
+    config = """{
+        apiKey: "%s",
+        authDomain: "%s",
+        projectId: "%s",
+        storageBucket: "%s",
+        messagingSenderId: "%s",
+        appId: "%s"
+    }""" % (
+        os.getenv("FIREBASE_API_KEY", ""),
+        os.getenv("FIREBASE_AUTH_DOMAIN", ""),
+        os.getenv("FIREBASE_PROJECT_ID", ""),
+        os.getenv("FIREBASE_STORAGE_BUCKET", ""),
+        os.getenv("FIREBASE_MESSAGING_SENDER_ID", ""),
+        os.getenv("FIREBASE_APP_ID", "")
+    )
+    html = html.replace("__FIREBASE_CONFIG__", config)
+    return html
+
+@app.get("/CoRAG.png")
+async def serve_logo():
+    from fastapi.responses import FileResponse
+    return FileResponse("data/CoRAG.png")
+
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 

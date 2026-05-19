@@ -13,7 +13,7 @@
   #auth-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
   .auth-card { background: #1a1f3a; border: 1px solid #2a3050; border-radius: 20px; padding: 40px; width: 400px; text-align: center; }
   .auth-card img { width: 90px; height: 90px; border-radius: 50%; margin-bottom: 16px; }
-  .auth-card h1 { font-size: 2em; background: linear-gradient(90deg, #00b4ff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; }
+  .auth-card h1 { font-size: 2em; background: linear-gradient(90deg, #00b4ff, #a855f7); -webkit-background-clip: text; background-clip: text;-webkit-text-fill-color: transparent; margin-bottom: 6px; }
   .auth-card p { color: #8892b0; margin-bottom: 28px; font-size: 14px; }
   .tabs { display: flex; background: #0d1120; border-radius: 10px; padding: 4px; margin-bottom: 24px; }
   .tab { flex: 1; padding: 10px; border: none; background: none; color: #8892b0; cursor: pointer; border-radius: 8px; font-size: 14px; font-weight: 600; transition: all .2s; }
@@ -35,7 +35,7 @@
   #app-page { display: none; }
   .header { background: linear-gradient(135deg, #0a0e1a 0%, #1a1f3a 100%); padding: 20px; text-align: center; border-bottom: 1px solid #2a3050; position: relative; }
   .header img { width: 70px; height: 70px; border-radius: 50%; margin-bottom: 10px; }
-  .header h1 { font-size: 2em; background: linear-gradient(90deg, #00b4ff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .header h1 { font-size: 2em; background: linear-gradient(90deg, #00b4ff, #a855f7); -webkit-background-clip: text; background-clip: text;  -webkit-text-fill-color: transparent; }
   .header p { color: #8892b0; font-size: 13px; }
   .user-info { position: absolute; top: 20px; right: 20px; display: flex; align-items: center; gap: 10px; }
   .user-avatar { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #00b4ff; }
@@ -78,7 +78,7 @@
 <!-- ══ AUTH PAGE ══ -->
 <div id="auth-page">
   <div class="auth-card">
-    <img src="data/CoRAG.png" alt="CoRAG">
+    <img src="CoRAG.png" alt="CoRAG">
     <h1>CoRAG</h1>
     <p>Legal Search — Sign in to continue</p>
 
@@ -135,11 +135,11 @@
 <div id="app-page">
   <div class="header">
     <div class="user-info">
-      <img class="user-avatar" id="user-avatar" src="" onerror="this.src='data/CoRAG.png'">
+      <img class="user-avatar" id="user-avatar" src="" onerror="this.src='CoRAG.png'">
       <span class="user-name" id="user-name"></span>
       <button class="btn-logout" onclick="logout()">Logout</button>
     </div>
-    <img src="data/CoRAG.png" alt="CoRAG Logo">
+    <img src="CoRAG.png" alt="CoRAG Logo">
     <h1>CoRAG</h1>
     <p>Adaptive Multi-Step Retrieval for Legal Queries</p>
   </div>
@@ -148,7 +148,7 @@
     <div class="search-box">
       <textarea id="question" placeholder="Ask a legal question... e.g. What are the principles for awarding indemnity costs?"></textarea>
       <div class="btn-row">
-        <button class="search-btn" onclick="ask()" id="btn">🔍 Search</button>
+        <button class="search-btn" onclick="ask()" id="btn"> Search</button>
       </div>
     </div>
 
@@ -157,7 +157,7 @@
       <p>Searching legal database...</p>
     </div>
 
-    <div class="error" id="error">⚠️ Could not connect to server. Make sure CoRAG server is running.</div>
+    <div class="error" id="error"> Could not connect to server. Make sure CoRAG server is running.</div>
 
     <div class="result" id="result">
       <div class="stats" id="stats"></div>

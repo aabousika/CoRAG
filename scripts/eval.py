@@ -40,7 +40,7 @@ for i, q in enumerate(questions):
     subprocess.run([
         'corag-search',
         '--question', q['question'],
-        '--index-dir', 'data/index',
+        '--index-dir', 'data/index_trained',
         '--max-steps', str(MAX_STEPS),
         '--k', str(K),
         '--output', f'data/trace_{i}.json'

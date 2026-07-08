@@ -52,7 +52,7 @@ async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "🤖 *CoRAG — Adaptive Multi-Step Retrieval*\n\n"
         "📊 System Statistics:\n"
-        "• Hit Rate: 90%. after Fine-tuning\n"
+        "• Hit Rate: 96%. after Fine-tuning\n"
         "• F1 Score: 56.4%. on HotpotQA\n"
         "• Exact Match: 34.0%\n"
         "• 37,393 legal vectors\n\n"
